@@ -30,8 +30,8 @@ int main(int argc, char const *argv[])
 {
   // s21_decimal a = 15.1567
   // get_decimal(a) = {0,8,16,32}
-	s21_decimal decimal_1 = {1, 2, 3, 4}; // negavite {1, 0, 0, 2147483650};
-  s21_decimal decimal_2 = {5, 2, 3, 4}; // negative {1, 0, 0, 2147483649};
+	s21_decimal decimal_1 = {1, 0, 0, 2147483650}; // negavite {1, 0, 0, 2147483650};
+  s21_decimal decimal_2 = {1, 0, 0, 0}; // negative {1, 0, 0, 2147483649};
 	//set_bit(&decimal, 4);
 
   printf("is_less %d\n", s21_is_less(decimal_1, decimal_2)); 
@@ -80,9 +80,9 @@ int s21_is_less(s21_decimal x, s21_decimal y) {
   //printf("sign_x=%d, sign_y=%d\n", sign_x, sign_y);
   // exp = 1 - отрицательное число
   
-  if (sign_x < sign_y) {
+  if (sign_x > sign_y) {
     result = 1;
-  } else if (sign_x > sign_y) {
+  } else if (sign_x < sign_y) {
     result = 0;
   } else if (sign_x == 1 & sign_y == 1) {
     result = 11;     // если оба отрицательных далее обрабатывается
