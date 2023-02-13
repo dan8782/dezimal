@@ -5,8 +5,8 @@
 
 #define SIGN_BIT 127
 #define START_EXP_BIT 112
-#define LAST_EXP_BIT 119 
-#define LAST_MANTISSA_BIT 95 
+#define LAST_EXP_BIT 119
+#define LAST_MANTISSA_BIT 95
 
 
 typedef struct 
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
   // s21_decimal a = 15.1567
   // get_decimal(a) = {0,8,16,32}
 	s21_decimal decimal_1 = {1, 0, 0, 2147483650}; // negavite {1, 0, 0, 2147483650};
-  s21_decimal decimal_2 = {1, 0, 0, 0}; // negative {1, 0, 0, 2147483649};
+  s21_decimal decimal_2 = {1, 0, 0, 2147483650}; // negative {1, 0, 0, 2147483649};
 	//set_bit(&decimal, 4);
 
   printf("is_less %d\n", s21_is_less(decimal_1, decimal_2)); 
@@ -84,9 +84,9 @@ int s21_is_less(s21_decimal x, s21_decimal y) {
     result = 1;
   } else if (sign_x < sign_y) {
     result = 0;
-  } else if (sign_x == 1 & sign_y == 1) {
+  } else if (sign_x == 1 && sign_y == 1) {
     result = 11;     // если оба отрицательных далее обрабатывается
-  } else if (sign_x == 0 & sign_y == 0) {
+  } else if (sign_x == 0 && sign_y == 0) {
     result = 99;     // если оба положительных
   }
 
@@ -94,17 +94,17 @@ int s21_is_less(s21_decimal x, s21_decimal y) {
   int exp_x = get_exp(x);
   int exp_y = get_exp(y);
   // printf("exp_x=%d, exp_y=%d\n", exp_x, exp_y);
-  if ((result == 11) & (exp_x == exp_y)) { //если экспоненты равны, то сравниваем мантиссу
+  if ((result == 11) && (exp_x == exp_y)) { //если экспоненты равны, то сравниваем мантиссу
     result = 111;
-  } else if (result == 99 & exp_x == exp_y) {
+  } else if ((result == 99) && (exp_x == exp_y)) {
     result = 999;
-  } else if (result == 11 & exp_x < exp_y) {
+  } else if (result == 11 && exp_x < exp_y) {
     result = 0;
-  } else if (result == 11 & exp_x > exp_y) {
+  } else if (result == 11 && exp_x > exp_y) {
     result = 1;
-  } else if (result == 99 & exp_x > exp_y) {
+  } else if (result == 99 && exp_x > exp_y) {
     result = 0;
-  } else if (result == 99 & exp_x < exp_y) {
+  } else if (result == 99 && exp_x < exp_y) {
     result = 1;
   }
   
@@ -118,11 +118,12 @@ int s21_is_less(s21_decimal x, s21_decimal y) {
   return result;
 }
 
-// Получаем степень 
+// Получаем степень  112 - старший бит, 119 - младший
 int get_exp(s21_decimal x) {
   int exp = 0;
   for (int i = LAST_EXP_BIT; i >= START_EXP_BIT; i--) {
     exp += get_bit(x, i) * pow(2, LAST_EXP_BIT-i);
+   // printf("i = %d, exp_2 = %d\n", i, LAST_EXP_BIT-i);
   }
   return exp;
 }
@@ -154,7 +155,7 @@ int s21_is_equal(s21_decimal x, s21_decimal y) {
 }
 
 int s21_is_greater(s21_decimal x, s21_decimal y) {
-  return (!s21_is_equal(x, y) & !(s21_is_less(x, y)));
+  return (!s21_is_equal(x, y) && !(s21_is_less(x, y)));
 
 }
 
