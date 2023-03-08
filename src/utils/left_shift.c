@@ -1,4 +1,4 @@
-#include "s21_decimal.h"
+#include "../s21_decimal.h"
 
 int left_shift(s21_decimal *decimal) {
   int last_bit[2] = {0};
