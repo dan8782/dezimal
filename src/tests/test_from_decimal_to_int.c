@@ -1,20 +1,33 @@
 #include "./test_main.h"
 
-START_TEST(test1) {
-  s21_decimal src = {10, 0, 0, 0};
-  print_dec(src);
+START_TEST(zero_decimal) {
+  s21_decimal x = {0};
+  printf("zero_decimal\n");
+  print_dec(x);
   int result = 0;
-  s21_from_decimal_to_int(src, &result);
-  ck_assert_int_eq(10, result);
+  s21_from_decimal_to_int(x, &result);
+  ck_assert_int_eq(0, result);
 }
 END_TEST
 
-START_TEST(test2) {
-  s21_decimal src = {INT_MAX, 0, 0, 0};
-  print_dec(src);
+START_TEST(int_neg) {
+  s21_decimal x = {INT_MAX, 0, 0, 0};
+  set_sign(&x, 1);
+  printf("int_neg\n");
+  print_dec(x);
   int result = 0;
-  s21_from_decimal_to_int(src, &result);
-  ck_assert_int_eq(INT_MAX, result);
+  s21_from_decimal_to_int(x, &result);
+  ck_assert_int_eq(-INT_MAX, result);
+}
+END_TEST
+
+START_TEST(int_pos) {
+  s21_decimal x = {33, 0, 0, 0};
+  printf("int_pos\n");
+  print_dec(x);
+  int result = 0;
+  s21_from_decimal_to_int(x, &result);
+  ck_assert_int_eq(33, result);
 }
 END_TEST
 
@@ -23,8 +36,9 @@ Suite *suite_s21_from_decimal_to_int() {
   TCase *tc1;
   s1 = suite_create("suite_s21_from_decimal_to_int");
   tc1 = tcase_create("case_from_decimal_to_int");
-  tcase_add_test(tc1, test1);
-  tcase_add_test(tc1, test2);
+  tcase_add_test(tc1, zero_decimal);
+  tcase_add_test(tc1, int_neg);
+  tcase_add_test(tc1, int_pos);
   suite_add_tcase(s1, tc1);
   return s1;
 }
