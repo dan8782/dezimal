@@ -4,6 +4,11 @@
 #include <string.h>
 #include <math.h>
 
+#define LOW_BIT 0
+#define MID_BIT 32
+#define HIGH_BIT 64
+#define LAST_BIT 96
+
 typedef struct 
 {
     int bits[4];
