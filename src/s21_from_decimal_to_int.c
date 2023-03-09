@@ -3,7 +3,7 @@
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     int flag = 0;
     int data = 0;
-    int scale = get_scale(src);
+    int scale = get_exp(src);
 
     if (scale + 31 < 95) {
         for (int i = scale + 31; i <= 95; ++i) {
