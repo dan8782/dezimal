@@ -1,17 +1,15 @@
 FLAGS_FOR_TEST = -lcheck -lm -lpthread 
-FLAGS_STANDART = -Wall -Wextra -Werror -std=c11 #-g #-fsanitize=address
+FLAGS_STANDART = -Wall -Wextra -Werror -std=c11 -g -fsanitize=address
 
 all: test
 
-test:
-	gcc ./comparison/*.c ./utils/*.c *.c -o run_test
-	./run_test
-
+test: ./tests/test_main.c
+	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST) ./tests/*.c ./utils/*.c ./*.c ./comparison/*.c -o tests.exe
+	./tests.exe
+	
 clean:
-	rm -rf *.gcda *.gcno *.info *.a
-	rm -rf run_cov
-	rm -rf run_test
-	rm -rf report  
+	rm -rf tests.exe.dSYM
+	rm -rf tests.exe
 
 check_style:
 	clang-format -n ./lib/*.c ./tests/*.c
