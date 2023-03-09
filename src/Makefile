@@ -4,7 +4,7 @@ FLAGS_STANDART = -Wall -Wextra -Werror -std=c11 #-g #-fsanitize=address
 all: test
 
 test:
-	gcc ./comparison/*.c *.c -o run_test
+	gcc ./comparison/*.c ./utils/*.c *.c -o run_test
 	./run_test
 
 clean:
