@@ -31,6 +31,17 @@ START_TEST(int_pos) {
 }
 END_TEST
 
+START_TEST(int_with_exp) {
+  s21_decimal x = {123, 0, 0, 0};
+  set_exp(&x, 5);
+  printf("int_with_exp\n");
+  print_dec(x);
+  int result = 0;
+  s21_from_decimal_to_int(x, &result);
+  ck_assert_int_eq(12300000, result);
+}
+END_TEST
+
 Suite *suite_s21_from_decimal_to_int() {
   Suite *s1;
   TCase *tc1;
@@ -39,6 +50,7 @@ Suite *suite_s21_from_decimal_to_int() {
   tcase_add_test(tc1, zero_decimal);
   tcase_add_test(tc1, int_neg);
   tcase_add_test(tc1, int_pos);
+  tcase_add_test(tc1, int_with_exp);
   suite_add_tcase(s1, tc1);
   return s1;
 }
