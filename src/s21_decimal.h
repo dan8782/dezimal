@@ -25,6 +25,8 @@ s21_decimal *set_bit(s21_decimal *decimal, int index,bool sign);
 s21_decimal *unset_bit(s21_decimal *decimal, int index);
 s21_decimal *switch_bit(s21_decimal *decimal, int index);
 int s21_from_int_to_decimal(int src, s21_decimal *dst);
+int s21_from_decimal_to_int(s21_decimal src, int *dst);
+int s21_from_decimal_to_float(s21_decimal src, float *dst);
 int s21_is_less(s21_decimal x, s21_decimal y);
 int s21_is_equal(s21_decimal x, s21_decimal y);
 int get_exp(s21_decimal x);
@@ -34,6 +36,7 @@ int s21_is_greater_or_equal(s21_decimal x, s21_decimal y);
 int s21_is_less_or_equal(s21_decimal x, s21_decimal y);
 void test(s21_decimal x, s21_decimal y);
 void set_exp(s21_decimal *decimal,int exp);
+void s21_is_null(s21_decimal *x);
 
 #define SIGN_BIT 127
 #define START_EXP_BIT 112
