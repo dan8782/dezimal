@@ -1,4 +1,4 @@
-#include "s21_decimal.h"
+#include "../s21_decimal.h"
 
 void print_dec(s21_decimal decl) {
   for (int i = 127; i >= 0; i--) {

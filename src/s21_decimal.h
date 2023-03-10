@@ -3,12 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 #define LOW_BIT 0
 #define MID_BIT 32
 #define HIGH_BIT 64
 #define LAST_BIT 96
+#define SIGN_BIT 127
+#define START_EXP_BIT 112
+#define LAST_EXP_BIT 119
+#define LAST_MANTISSA_BIT 95
 
 typedef struct {
   int bits[4];
@@ -35,12 +38,7 @@ int s21_is_greater(s21_decimal x, s21_decimal y);
 int s21_is_greater_or_equal(s21_decimal x, s21_decimal y);
 int s21_is_less_or_equal(s21_decimal x, s21_decimal y);
 void test(s21_decimal x, s21_decimal y);
-void set_exp(s21_decimal *decimal,int exp);
+void set_exp(s21_decimal *decimal, int exp);
 void s21_is_null(s21_decimal *x);
 void set_exp(s21_decimal *decimal, int exp);
 int left_shift(s21_decimal *decimal);
-
-#define SIGN_BIT 127
-#define START_EXP_BIT 112
-#define LAST_EXP_BIT 119
-#define LAST_MANTISSA_BIT 95
