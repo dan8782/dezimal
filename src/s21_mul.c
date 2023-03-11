@@ -3,8 +3,6 @@
 int addhelp(int a,int b);
 int Bitwise_add(int a,int b);
 int multiplyTwoNumbers(int a, int b);
-int s21_shiftLeft(s21_decimal *num, int x);
-int safe_shl(int x, int y);
 
 int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   // add_helper(value_1,value_2, result);
@@ -14,14 +12,13 @@ int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
 
   printf("\n");
   result->bits[0] = multiplyTwoNumbers(1, 2147483646);
-  s21_shiftLeft(result, 2);
 //   result->bits[1]= safe_shl(result->bits[1],1);
 //   result->bits[1]= result->bits[1]<<1;
   return 0;
 }
 
 int Bitwise_add(int a, int b) {
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 96; i++) {
           int buffer = a & b;
           a = a ^ b;
           b = buffer << 1;
@@ -60,37 +57,3 @@ int multiplyTwoNumbers(int a, int b) {
   return result;
 }
 
-
-int s21_shiftLeft(s21_decimal *result, int x) {
-//   int isOverflow = get_bit(*num, 95);
-//   for (int i = 95; i >= 0; i--) {
-//     if (i != 0) {
-//       set_bit(num, i, get_bit(*num, i - 1));
-//     } else {
-//       set_bit(num, i, 0);
-//     }
-//   }
-//   return isOverflow;
-	if (get_bit(*result, 31) == 1) {
-		set_bit(result, 33,1);
-	} else
-	{
-		result->bits[0]<<=x;
-	}
-	
-	
-	
-	return 0;
-
-}
-
-// 00100
-
-int safe_shl(int x, int y) {
-	
-    if (y < 32) {
-        uint32_t z = x << y;
-        return z;
-    }
-    return 0;
-}
