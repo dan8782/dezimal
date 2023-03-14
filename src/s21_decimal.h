@@ -44,3 +44,5 @@ void s21_is_null(s21_decimal *x);
 void set_exp(s21_decimal *decimal, int exp);
 int left_shift(s21_decimal *decimal);
 int sub_96bit(s21_decimal x, s21_decimal y, s21_decimal *res);
+int div_96bit(s21_decimal x, s21_decimal y, s21_decimal *res);
+int Bitwise_add(s21_decimal value_a, s21_decimal value_b, s21_decimal *result);
