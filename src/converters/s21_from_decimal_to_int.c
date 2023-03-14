@@ -5,7 +5,7 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   int data = 0;
   int scale = get_exp(src);
 
-    if (src.bits[1] != 0) {
+    if (src.bits[1] != 0 && scale == 0) {
       flag = 1;
     }
   if (1) {
