@@ -12,5 +12,6 @@
 Suite *suite_s21_from_decimal_to_int();
 Suite *suite_s21_is_equal();
 Suite *suite_s21_from_int_to_decimal();
+Suite *suite_s21_from_decimal_to_float();
 
 #endif  //  SRC_TESTS_TEST_MAIN_H_
