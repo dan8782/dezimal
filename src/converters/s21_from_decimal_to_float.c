@@ -5,6 +5,10 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst) {
   *dst = 0.0;
 
   int scale = get_exp(src);
+  if (!dst) {
+    return_val = 1;
+  }
+
   for (int i = 0; i < LAST_BIT; i++) {
     if (get_bit(src, i)) {
       *dst += pow(2, i);
