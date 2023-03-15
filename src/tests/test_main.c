@@ -3,6 +3,7 @@
 int main() {
   Suite *test_suites[] = {suite_s21_from_decimal_to_int(),
                           suite_s21_from_int_to_decimal(),
+                          suite_s21_from_decimal_to_float(),
                           suite_s21_is_equal()};
 
   SRunner *suite_runner = srunner_create(test_suites[0]);
