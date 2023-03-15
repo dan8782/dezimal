@@ -6,7 +6,7 @@ int Bitwise_add(s21_decimal value_a, s21_decimal value_b, s21_decimal *result) {
   int bit_a = 0;
   int bit_b = 0;
   s21_decimal bufferd;
-  s21_is_null(&bufferd);
+  s21_set_zero(&bufferd);
   for (int i = 0; i < 96; i++) {
     bit_a = get_bit(value_a, i);
     bit_b = get_bit(value_b, i);
