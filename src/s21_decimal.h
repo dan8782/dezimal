@@ -39,6 +39,6 @@ int s21_is_greater_or_equal(s21_decimal x, s21_decimal y);
 int s21_is_less_or_equal(s21_decimal x, s21_decimal y);
 void test(s21_decimal x, s21_decimal y);
 void set_exp(s21_decimal *decimal, int exp);
-void s21_is_null(s21_decimal *x);
+void s21_set_null(s21_decimal *x);
 void set_exp(s21_decimal *decimal, int exp);
 int left_shift(s21_decimal *decimal);
