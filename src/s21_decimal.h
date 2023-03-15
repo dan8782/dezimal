@@ -47,3 +47,4 @@ int sub_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
 int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
 int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result);
 int is_zero(s21_decimal *val);
+int s21_truncate(s21_decimal val, s21_decimal *result);
