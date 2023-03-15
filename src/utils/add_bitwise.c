@@ -1,6 +1,6 @@
 #include "../s21_decimal.h"
 
-int Bitwise_add(s21_decimal value_a, s21_decimal value_b, s21_decimal *result) {
+int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result) {
   int temp_bit = result->bits[3];
   int buffer = 0;
   int bit_a = 0;

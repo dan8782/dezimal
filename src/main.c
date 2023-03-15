@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
   // s21_mul(decimal1,decimal2,&result);
   // sub_96bit(decimal1, decimal2, &result);
   printf("Start...\n");
-  div_96bit(decimal1, decimal2, &result);
+  div_int_bitwise(decimal1, decimal2, &result);
   print_dec(decimal1);
 
   print_dec(result);

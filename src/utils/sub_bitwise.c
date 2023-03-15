@@ -1,6 +1,6 @@
 #include "../s21_decimal.h"
 
-int sub_96bit(s21_decimal x, s21_decimal y, s21_decimal *res) {
+int sub_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   s21_decimal zero_decimal = {0};
   s21_decimal borrow = {0};
 
