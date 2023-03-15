@@ -32,13 +32,13 @@ START_TEST(int_pos) {
 END_TEST
 
 START_TEST(int_with_exp) {
-  s21_decimal x = {123, 0, 0, 0};
-  set_exp(&x, 5);
+  s21_decimal x = {12345, 0, 0, 0};
+  set_exp(&x, 2);
   printf("int_with_exp\n");
   print_dec(x);
   int result = 0;
   s21_from_decimal_to_int(x, &result);
-  ck_assert_int_eq(12300000, result);
+  ck_assert_int_eq(12345, result);
 }
 END_TEST
 
