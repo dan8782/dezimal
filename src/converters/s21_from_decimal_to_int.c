@@ -3,7 +3,7 @@
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   int flag = 0;
   int data = 0;
-  int scale = get_exp(src);
+  int scale = get_exp(&src);
   for (int i = 1; i < 3; i++) {
     if (src.bits[i] != 0) {
       flag = 1;
@@ -23,7 +23,7 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
       data <<= 1;
       data |= get_bit(src, i);
     }
-    if (get_sign(src)) {
+    if (get_sign(&src)) {
       data = -data;
     }
     *dst = data;

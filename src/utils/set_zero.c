@@ -1,6 +1,6 @@
-#include "s21_decimal.h"
+#include "../s21_decimal.h"
 
-void s21_set_zero(s21_decimal *decl) {
+void set_zero(s21_decimal *decl) {
   for (int i = 0; i < 128; ++i) {
     set_bit(decl, i, 0);
   }
