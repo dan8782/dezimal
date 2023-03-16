@@ -5,13 +5,12 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     s21_truncate(src, &src);
   }
 
-  if (src.bits[1] != 0 || src.bits[2] != 0 || src.bits[0] > 0x80000000) {
+  if (src.bits[2] || src.bits[1] || src.bits[0] > 0x7fffffff) {
     return 1;
-  } else {
-    *dst = src.bits[0];
+  } 
+    *dst = src.bits[0] & 0x7fffffff;
     if (get_sign(src)) {
       *dst *= -1;
     }
-  }
   return 0;
 }
