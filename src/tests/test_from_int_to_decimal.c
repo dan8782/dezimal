@@ -5,7 +5,7 @@ START_TEST(zero_int) {
   printf("zero_int\n");
   int src = 0;
   s21_from_int_to_decimal(src, &x);
-  print_dec(x);
+  print_dec(&x);
 }
 END_TEST
 
@@ -14,7 +14,7 @@ START_TEST(pos_max_int) {
   printf("pos_max_int\n");
   int src = INT_MAX;
   s21_from_int_to_decimal(src, &x);
-  print_dec(x);
+  print_dec(&x);
 }
 END_TEST
 
@@ -23,7 +23,7 @@ START_TEST(neg_max_int) {
   printf("neg_max_int\n");
   int src = -INT_MAX;
   s21_from_int_to_decimal(src, &x);
-  print_dec(x);
+  print_dec(&x);
 }
 END_TEST
 
@@ -32,7 +32,7 @@ START_TEST(neg_int) {
   printf("neg_int\n");
   int src = -10;
   s21_from_int_to_decimal(src, &x);
-  print_dec(x);
+  print_dec(&x);
 }
 END_TEST
 
@@ -41,7 +41,7 @@ START_TEST(pos_int) {
   printf("pos_int\n");
   int src = 10;
   s21_from_int_to_decimal(src, &x);
-  print_dec(x);
+  print_dec(&x);
 }
 END_TEST
 
