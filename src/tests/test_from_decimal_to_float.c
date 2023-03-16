@@ -3,7 +3,7 @@
 START_TEST(zero_decimal) {
   s21_decimal x = {0};
   printf("zero_decimal\n");
-  print_dec(x);
+  print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
   ck_assert_float_eq(0, result);
@@ -14,7 +14,7 @@ START_TEST(int_neg) {
   s21_decimal x = {{INT_MAX, 0, 0, 0}};
   set_sign(&x, 1);
   printf("int_neg\n");
-  print_dec(x);
+  print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
   ck_assert_float_eq_tol(-INT_MAX, result, 8);
@@ -22,9 +22,9 @@ START_TEST(int_neg) {
 END_TEST
 
 START_TEST(int_pos) {
-  s21_decimal x = { {33, 0, 0, 0} };
+  s21_decimal x = {{33, 0, 0, 0}};
   printf("int_pos\n");
-  print_dec(x);
+  print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
   ck_assert_float_eq(33, result);
@@ -32,10 +32,10 @@ START_TEST(int_pos) {
 END_TEST
 
 START_TEST(int_with_exp) {
-  s21_decimal x = { {12345, 0, 0, 0} };
+  s21_decimal x = {{12345, 0, 0, 0}};
   set_exp(&x, 6);
   printf("int_with_exp\n");
-  print_dec(x);
+  print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
   ck_assert_float_eq_tol(0, result, 8);

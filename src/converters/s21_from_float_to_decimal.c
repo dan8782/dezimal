@@ -1,9 +1,10 @@
-#include "../s21_decimal.h"
 #include <math.h>
 
+#include "../s21_decimal.h"
+
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
-    s21_set_null(dst);
-    src = fabsf(src);
+  set_zero(dst);
+  src = fabsf(src);
 
   if (src < 0) {
     set_sign(dst, 1);

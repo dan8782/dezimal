@@ -32,27 +32,13 @@ START_TEST(int_pos) {
 END_TEST
 
 START_TEST(int_with_exp) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  s21_decimal x = {12345, 0, 0, 0};
-  set_exp(&x, 2);
-=======
-  s21_decimal x = { {12345, 0, 0, 0} };
-  set_exp(&x, 5);
->>>>>>> 31fcce9b1f12e12b08c0e5ec023045f422681971
-=======
   s21_decimal x = {{12345, 0, 0, 0}};
   set_exp(&x, 6);
->>>>>>> igor
   printf("int_with_exp\n");
   print_dec(&x);
   int result = 0;
   s21_from_decimal_to_int(x, &result);
-<<<<<<< HEAD
-  ck_assert_int_eq(12345, result);
-=======
   ck_assert_int_eq(0, result);
->>>>>>> 31fcce9b1f12e12b08c0e5ec023045f422681971
 }
 END_TEST
 

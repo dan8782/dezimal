@@ -9,7 +9,6 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
       flag = 1;
     }
   }
-  * / *dst = 0;
 
   // if (scale + 31 < 95) {
   //   for (int i = scale + 31; i <= 95; ++i) {
@@ -27,5 +26,21 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     if (get_sign(&src)) {
       data = -data;
     }
-    return 0;
+    *dst = data;
   }
+  return flag;
+}
+
+// int s21_from_decimal_to_int(s21_decimal src, int *dst) {
+//   int result = 1;
+//   s21_decimal max_dec = {{2147483647, 0, 0, 0}};
+//   s21_decimal min_dec = {{2147483648, 0, 0, 0}};
+//   set_sign(&min_dec, 1);
+//   if (1) {
+//     *dst = src.bits[0];
+//     *dst *= get_sign(src) ? -1 : 1;
+//     *dst = *dst / (int)pow(10.0, (double)get_exp(src));
+//     result = 0;
+//   }
+//   return result;
+// }
