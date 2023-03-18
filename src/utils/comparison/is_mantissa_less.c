@@ -1,4 +1,4 @@
-#include "../s21_decimal.h"
+#include "../../s21_decimal.h"
 
 // Сравниваем побитово мантиссу
 int is_mantissa_less(s21_decimal x, s21_decimal y, int sign) {

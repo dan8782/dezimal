@@ -67,3 +67,5 @@ int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result);
 int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
 int is_zero(s21_decimal *val);
 int is_bitwise_less(s21_decimal *a, s21_decimal *b);
+int is_bitwise_less_or_equal(s21_decimal *a, s21_decimal *b);
+int value_exp_to_decimal(s21_decimal *res, int n);
