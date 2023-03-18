@@ -21,8 +21,9 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
       copy_decimal(&buff_y, y); 
 
       for (int j = 0; j < i; j++) {
-        if (left_shift(&buff_y))   // y * 2^i
-          break;   // переполнение
+        // if (left_shift(&buff_y))   // y * 2^i
+        //   break;   // переполнение
+        left_shift(&buff_y);
       } 
       if (is_bitwise_less_or_equal(&buff_y, &x)) {  // checking if: y * 2^i <= x
               
