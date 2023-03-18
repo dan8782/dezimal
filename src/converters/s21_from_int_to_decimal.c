@@ -2,7 +2,7 @@
 
 int s21_from_int_to_decimal(int src, s21_decimal *dst) {
   // заполненение массива указанными символами = 0
-  memset(&(dst->bits), 0, sizeof(dst->bits));
+  set_zero(dst);
   if (src < 0) {
     set_sign(dst, 1);
     src *= -1;

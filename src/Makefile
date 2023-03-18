@@ -10,3 +10,6 @@ test: ./tests/test_main.c
 clean:
 	rm -rf tests.exe.dSYM
 	rm -rf tests.exe
+	
+check_style:
+	clang-format -style=Google -n *.c *.h
