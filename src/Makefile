@@ -1,6 +1,6 @@
 FLAGS_FOR_TEST = -lcheck -lm -lpthread 
-FLAGS_STANDART =  -std=c11 -g #-fsanitize=address
-SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
+FLAGS_STANDART =  -std=c11 -g -fsanitize=address
+SRCS = $(shell find . -type f -name '*.c' -print)
 
 all: test
 
