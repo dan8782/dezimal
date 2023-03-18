@@ -1,4 +1,4 @@
-#include "../s21_decimal.h"
+#include "../../s21_decimal.h"
 
 int get_exp(s21_decimal *x) {
   int exp = 0;

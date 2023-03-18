@@ -1,4 +1,4 @@
-#include "../s21_decimal.h"
+#include "../../s21_decimal.h"
 
 int sub_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   s21_decimal zero_decimal = {0};
