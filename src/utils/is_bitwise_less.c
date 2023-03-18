@@ -9,8 +9,10 @@ int is_bitwise_less(s21_decimal *a, s21_decimal *b) {
   for (int i = LAST_BIT - 1; i >= 0; i--) {
     a_bit = get_bit(*a, i);
     b_bit = get_bit(*b, i);
-    if ((a != b) && (a < b)) {
+    if ((a_bit != b_bit) && (a_bit < b_bit)) {
       result = 1;
+      break;
+    } else if ((a_bit != b_bit) && (a_bit > b_bit)){
       break;
     }
   }
