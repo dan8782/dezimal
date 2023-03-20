@@ -1,22 +1,33 @@
 #include "../../s21_decimal.h"
 
-int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result) {
-  int temp_bit = result->bits[3];
-  int buffer = 0;
-  int bit_a = 0;
-  int bit_b = 0;
-  s21_decimal bufferd;
-  set_zero(&bufferd);
-  for (int i = 0; i < 96; i++) {
-    bit_a = get_bit(value_a, i);
-    bit_b = get_bit(value_b, i);
-    buffer = bit_a & bit_b;
-    set_bit(&bufferd, i, bit_a & bit_b);
-    set_bit(result, i, bit_a ^ bit_b);
-    if (buffer != 0) {
-      left_shift(&bufferd);
-      value_b = bufferd;
+// def Bitwise_add(a,b):
+//     while b != 0:
+//         carry = a&b // Carry value is calculated
+//         a = a^b // Sum value is calculated and stored in a
+//         b = carry<<1 // The carry value is shifted towards left by a bit
+
+//     return a // returns the final sum
+
+int add_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
+  s21_decimal carry = {0};
+
+  if (is_zero(&y)) {
+    copy_decimal(res, x);
+  } else {
+    while (!is_zero(&y)) {
+      for (int i = 0; i < 3; i++) {
+        carry.bits[i] = x.bits[i] & y.bits[i];
+        x.bits[i] ^= y.bits[i];
+      }
+
+      left_shift(&carry);
+      for (int i = 0; i < 3; i++) {
+        y.bits[i] = carry.bits[i];
+      }
+    }
+    for (int i = 0; i < 3; i++) {
+      res->bits[i] = x.bits[i];
     }
   }
-  return buffer;
+  return 0;
 }
