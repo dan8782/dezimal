@@ -1,7 +1,6 @@
 #include "./test_main.h"
 
 START_TEST(division_by_zero) {
-
   s21_decimal dec1 = {8798797, 0, 0, 0};
   s21_decimal dec2 = {0, 0, 0, 0};
   s21_decimal res = {0};
@@ -12,13 +11,12 @@ START_TEST(division_by_zero) {
   printf("result:\n");
   div_int_bitwise(dec1, dec2, &res);
   print_dec(&res);
-  
+
   ck_assert_int_eq(DIVISION_BY_ZERO, res.status);
 }
 END_TEST
 
 START_TEST(dec1_less_dec2) {
-
   s21_decimal dec1 = {UINT32_MAX, 123, 0, 0};
   s21_decimal dec2 = {UINT32_MAX, 124, 0, 0};
   s21_decimal res = {0};
@@ -34,7 +32,6 @@ START_TEST(dec1_less_dec2) {
 END_TEST
 
 START_TEST(dec1_eq_dec2) {
-
   s21_decimal dec1 = {UINT32_MAX, 555, 11, 0};
   s21_decimal dec2 = {UINT32_MAX, 555, 11, 0};
   s21_decimal res = {0};
@@ -50,7 +47,6 @@ START_TEST(dec1_eq_dec2) {
 END_TEST
 
 START_TEST(div_zero) {
-
   s21_decimal dec1 = {0, 0, 0, 0};
   s21_decimal dec2 = {UINT32_MAX, UINT32_MAX, 0, 0};
   s21_decimal res = {0};
@@ -66,7 +62,6 @@ START_TEST(div_zero) {
 END_TEST
 
 START_TEST(dec1_greate_dec2_1) {
-
   s21_decimal dec1 = {7994643, 0, 0, 0};
   s21_decimal dec2 = {1000000, 0, 0, 0};
   s21_decimal res = {0};
@@ -82,9 +77,8 @@ START_TEST(dec1_greate_dec2_1) {
 END_TEST
 
 START_TEST(dec1_MAX_dec2) {
-
   s21_decimal dec1 = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0};
-  s21_decimal dec2 = {UINT32_MAX, UINT32_MAX, 0, 0};
+  s21_decimal dec2 = {3456, 0, 0, 0};
   s21_decimal res = {0};
 
   printf("dec1_MAX_dec2:\n");
@@ -98,8 +92,7 @@ START_TEST(dec1_MAX_dec2) {
 END_TEST
 
 START_TEST(dec1_dec2_MAX) {
-
-  s21_decimal dec1 = {UINT32_MAX-1, 0, 0, 0};
+  s21_decimal dec1 = {UINT32_MAX - 1, 0, 0, 0};
   s21_decimal dec2 = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0};
   s21_decimal res = {0};
 
@@ -114,7 +107,6 @@ START_TEST(dec1_dec2_MAX) {
 END_TEST
 
 START_TEST(dec1_MAX_dec2_MAX) {
-
   s21_decimal dec1 = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0};
   s21_decimal dec2 = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0};
   s21_decimal res = {0};
