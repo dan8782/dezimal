@@ -1,9 +1,9 @@
 #include "./test_main.h"
 
 int main() {
-  Suite *test_suites[] = {//suite_s21_from_decimal_to_int(),
-                          //suite_s21_from_int_to_decimal(),
-                          //suite_s21_is_equal(),
+  Suite *test_suites[] = {// suite_s21_from_decimal_to_int(),
+                          // suite_s21_from_int_to_decimal(),
+                          // suite_s21_is_equal(),
                           suite_div_int_bitwise()};
 
   SRunner *suite_runner = srunner_create(test_suites[0]);
