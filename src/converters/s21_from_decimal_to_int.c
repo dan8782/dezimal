@@ -1,5 +1,5 @@
 #include "../s21_decimal.h"
-
+/* Old one:
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   int flag = 0;
   int data = 0;
@@ -10,13 +10,7 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     }
   }
 
-  // if (scale + 31 < 95) {
-  //   for (int i = scale + 31; i <= 95; ++i) {
-  //     if (get_bit(src, i)) {
-  //       flag = 1;
-  //     }
-  //   }
-  // }
+*dst = 0;
 
   if (!flag) {
     for (int i = scale + 30; i >= scale; --i) {
@@ -26,21 +20,62 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     if (get_sign(&src)) {
       data = -data;
     }
-    *dst = data;
-  }
-  return flag;
+  return *dst;
 }
 
-// int s21_from_decimal_to_int(s21_decimal src, int *dst) {
-//   int result = 1;
-//   s21_decimal max_dec = {{2147483647, 0, 0, 0}};
-//   s21_decimal min_dec = {{2147483648, 0, 0, 0}};
-//   set_sign(&min_dec, 1);
-//   if (1) {
-//     *dst = src.bits[0];
-//     *dst *= get_sign(src) ? -1 : 1;
-//     *dst = *dst / (int)pow(10.0, (double)get_exp(src));
-//     result = 0;
-//   }
-//   return result;
-// }
+int dst2 = 0.0;
+
+int return_val = 0;
+  *dst = 0;
+
+  int scale = get_exp(src);
+  if (!dst) {
+    return_val = 1;
+  }
+
+  for (int i = 0; i < LAST_BIT; i++) {
+    if (get_bit(src, i)) {
+      dst2 += pow(2, i);
+    }
+  }
+  while (scale) {
+    dst2 /= 10;
+    scale--;
+  }
+  if (get_sign(src)) {
+    dst2 = dst2 * (-1);
+  }
+  printf("%d\n", dst2);
+  *dst = (int)dst2;
+  return *dst;
+}
+*/
+
+int s21_from_decimal_to_int(s21_decimal src, int *dst) {
+    s21_decimal truncated = {0};
+
+    int code = s21_truncate(src, &truncated);
+
+    int sign = get_sign(&src);
+
+    if (!dst || code == 1)
+        return 1;
+
+    if (get_bit(truncated, 31) || truncated.bits[1] || truncated.bits[2])
+        return 1;
+
+    int tmp = 0;
+
+    for (int i = 0; i < 31; i++)
+        tmp += pow(2, i) * get_bit(truncated, i);
+
+    if (tmp == src.bits[0] && sign)
+        return 1;
+
+    if (sign)
+        tmp = -tmp;
+
+    *dst = tmp;
+
+    return 0;
+}
