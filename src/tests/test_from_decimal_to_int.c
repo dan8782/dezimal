@@ -3,7 +3,7 @@
 START_TEST(zero_decimal) {
   s21_decimal x = {0};
   printf("zero_decimal\n");
-  print_dec(x);
+  print_dec(&x);
   int result = 0;
   s21_from_decimal_to_int(x, &result);
   ck_assert_int_eq(0, result);
@@ -14,7 +14,7 @@ START_TEST(int_neg) {
   s21_decimal x = {{INT_MAX, 0, 0, 0}};
   set_sign(&x, 1);
   printf("int_neg\n");
-  print_dec(x);
+  print_dec(&x);
   int result = 0;
   s21_from_decimal_to_int(x, &result);
   ck_assert_int_eq(-INT_MAX, result);
@@ -22,9 +22,9 @@ START_TEST(int_neg) {
 END_TEST
 
 START_TEST(int_pos) {
-  s21_decimal x = { {33, 0, 0, 0} };
+  s21_decimal x = {{33, 0, 0, 0}};
   printf("int_pos\n");
-  print_dec(x);
+  print_dec(&x);
   int result = 0;
   s21_from_decimal_to_int(x, &result);
   ck_assert_int_eq(33, result);
@@ -35,7 +35,7 @@ START_TEST(int_with_exp) {
   s21_decimal x = {INT32_MAX, INT32_MAX, INT32_MAX, 0};
   set_exp(&x, 28);
   printf("int_with_exp\n");
-  print_dec(x);
+  print_dec(&x);
   int result = 0;
   s21_from_decimal_to_int(x, &result);
   ck_assert_int_eq(7, result);

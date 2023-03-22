@@ -1,10 +1,11 @@
 FLAGS_FOR_TEST = -lcheck -lm -lpthread 
-FLAGS_STANDART =  -std=c11 -g #-fsanitize=address
+FLAGS_STANDART =  -std=c11 -g -fsanitize=address
+SRCS = $(shell find . -type f -name '*.c' -print)
 
 all: test
 
 test: ./tests/test_main.c
-	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST)  ./tests/*.c ./converters/*.c ./utils/*.c ./*.c ./comparison/*.c -o tests.exe
+	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o tests.exe
 	./tests.exe
 	
 clean:

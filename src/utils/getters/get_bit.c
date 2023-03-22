@@ -1,4 +1,4 @@
-#include "../s21_decimal.h"
+#include "../../s21_decimal.h"
 
 // Возвращает значение указанного бита
 
