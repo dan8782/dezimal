@@ -78,7 +78,7 @@ END_TEST
 
 START_TEST(dec1_MAX_dec2) {
   s21_decimal dec1 = {UINT32_MAX, UINT32_MAX, UINT32_MAX, 0};
-  s21_decimal dec2 = {3456, 0, 0, 0};
+  s21_decimal dec2 = {0, UINT32_MAX, UINT32_MAX, 0};
   s21_decimal res = {0};
 
   printf("dec1_MAX_dec2:\n");
@@ -87,7 +87,7 @@ START_TEST(dec1_MAX_dec2) {
   printf("result:\n");
   div_int_bitwise(dec1, dec2, &res);
   print_dec(&res);
-  ck_assert_int_eq(123, res.bits[0]);
+  ck_assert_int_eq(UINT32_MAX, res.bits[0]);
 }
 END_TEST
 

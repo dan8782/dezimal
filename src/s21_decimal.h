@@ -25,7 +25,7 @@ typedef enum enumDiv_status {
 } Div_status;
 
 typedef struct {
-  int bits[4];
+  unsigned int bits[4];
   char status;
 } s21_decimal;
 
@@ -62,10 +62,12 @@ s21_decimal *unset_bit(s21_decimal *decimal, int index);
 s21_decimal *switch_bit(s21_decimal *decimal, int index);
 
 int left_shift(s21_decimal *decimal);
+int right_shift(s21_decimal *decimal);
 int sub_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
 int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result);
 int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
 s21_decimal pow_10_decimal(int n);
+s21_decimal mul_by_10(s21_decimal *dec);
 int is_zero(s21_decimal *val);
 int is_bitwise_equal(s21_decimal *x, s21_decimal *y);
 int is_bitwise_less(s21_decimal *a, s21_decimal *b);
