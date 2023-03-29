@@ -24,7 +24,7 @@ s21_decimal pow_10_decimal(int n) {
   if (n == 0) {
     res.bits[0] = 1;
   } else if (n > 0 && n < 29) {
-    while (i < n) {
+    while (i < n - 1) {
       res = mul_by_10(&res);
       i++;
     }

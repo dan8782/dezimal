@@ -1,8 +1,8 @@
 #include "s21_decimal.h"
 
 int main(int argc, char const *argv[]) {
-  s21_decimal decimal1 = {-1, -1, -1, 0};
-  // set_exp(&decimal1, 5);
+  s21_decimal decimal1 = {75656, 0, 0, 0};
+  set_exp(&decimal1, 4);
   s21_decimal decimal2 = {-1, -1, -1, 0};
   s21_decimal result = {0};
   // s21_decimal result2 = {0};
@@ -13,7 +13,8 @@ int main(int argc, char const *argv[]) {
   //  s21_mul(decimal1,decimal2,&result);
   //  sub_96bit(decimal1, decimal2, &result);
   printf("Start...\n");
-  div_int_bitwise(decimal1, decimal2, &result);
+  // div_int_bitwise(decimal1, decimal2, &result);
+  s21_truncate(decimal1, &result);
   // add_bitwise(decimal1, decimal2, &result);
   // s21_truncate(decimal1, &result);
   // add_bitwise(decimal1, decimal2, &result);
@@ -24,7 +25,7 @@ int main(int argc, char const *argv[]) {
   //   }
 
   print_dec(&decimal1);
-  print_dec(&decimal2);
+  // print_dec(&decimal2);
   print_dec(&result);
 
   return 0;
