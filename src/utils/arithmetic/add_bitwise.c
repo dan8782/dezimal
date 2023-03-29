@@ -9,6 +9,7 @@
 //     return a // returns the final sum
 
 int add_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
+  int err = 0;
   s21_decimal carry = {0};
 
   if (is_zero(&y)) {
@@ -20,7 +21,7 @@ int add_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
         x.bits[i] ^= y.bits[i];
       }
 
-      left_shift(&carry);
+      if (left_shift(&carry)) err = 1;
       for (int i = 0; i < 3; i++) {
         y.bits[i] = carry.bits[i];
       }
@@ -29,5 +30,5 @@ int add_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
       res->bits[i] = x.bits[i];
     }
   }
-  return 0;
+  return err;
 }
