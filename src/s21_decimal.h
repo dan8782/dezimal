@@ -51,6 +51,8 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst);
 
 int s21_truncate(s21_decimal value, s21_decimal *result);
 int s21_negate(s21_decimal value, s21_decimal *result);
+int s21_floor(s21_decimal dec, s21_decimal *res);
+int s21_round(s21_decimal dec, s21_decimal *res);
 
 void copy_decimal(s21_decimal *decimal, s21_decimal origdec);
 
@@ -66,6 +68,7 @@ int right_shift(s21_decimal *decimal);
 int sub_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
 int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result);
 int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res);
+int mod_bitwise(s21_decimal x, s21_decimal y, s21_decimal *mod);
 s21_decimal pow_10_decimal(int n);
 s21_decimal mul_by_10(s21_decimal *dec);
 int is_zero(s21_decimal *val);
