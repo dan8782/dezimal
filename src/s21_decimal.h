@@ -29,6 +29,15 @@ typedef struct {
   char status;
 } s21_decimal;
 
+typedef union {
+  float f;
+  struct {
+    unsigned int mantisa : 23;
+    unsigned int exponent : 8;
+    unsigned int sign : 1;
+  } parts;
+} float_cast;
+
 void print_dec(s21_decimal *dec);
 int get_bit(s21_decimal decimal, int index);
 int get_sign(s21_decimal *decl);

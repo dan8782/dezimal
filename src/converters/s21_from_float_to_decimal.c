@@ -3,13 +3,31 @@
 #include "../s21_decimal.h"
 
 int s21_from_float_to_decimal(float src, s21_decimal *dst) {
-  set_zero(dst);
-  src = fabsf(src);
 
-  if (src < 0) {
-    set_sign(dst, 1);
-    src *= -1;
+void out_float(float f)
+{
+  size_t size = sizeof(f);
+  unsigned char * p = (unsigned char *) &f;
+  p += size-1;
+  while (size--)
+  {
+    int n;
+    for (n=0; n<8; n++)
+    {
+      putchar('0' + (*p & 128 ? 1 : 0));
+      *p <<= 1;
+    }
+    p--;
   }
-  dst->bits[0] = src;
+}
+
+
+int main()
+{
+  float f = 114.0;
+
+  out_float(f);
+  putchar('\n');
   return 0;
+}
 }
