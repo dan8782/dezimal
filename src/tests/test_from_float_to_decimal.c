@@ -12,7 +12,7 @@ END_TEST
 START_TEST(pos_max_int) {
   s21_decimal x = {0};
   printf("pos_max_int\n");
-  float src = INT_MAX;
+  float src = 2.1;
   s21_from_float_to_decimal(src, &x);
   printf("pos_max_int\n");
   print_dec(&x);
@@ -51,8 +51,8 @@ END_TEST
 Suite *suite_s21_from_float_to_decimal() {
   Suite *s1;
   TCase *tc1;
-  s1 = suite_create("suite_s21_from_int_to_decimal");
-  tc1 = tcase_create("case_from_int_to_decimal");
+  s1 = suite_create("suite_s21_from_float_to_decimal");
+  tc1 = tcase_create("case_from_float_to_decimal");
   tcase_add_test(tc1, zero_int);
   tcase_add_test(tc1, pos_max_int);
   tcase_add_test(tc1, neg_max_int);
