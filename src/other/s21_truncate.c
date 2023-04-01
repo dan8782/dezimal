@@ -8,8 +8,7 @@ int s21_truncate(s21_decimal val, s21_decimal *result) {
 
   if (exp == 0) {
     copy_decimal(result, val);
-  }
-  if (exp > 0 && exp < 29) {
+  } else if (exp > 0 && exp < 29) {
     s21_decimal scale = pow_10_decimal(exp);
     div_int_bitwise(val, scale, result);
     set_exp(result, 0);

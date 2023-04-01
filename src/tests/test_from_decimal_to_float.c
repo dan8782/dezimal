@@ -6,6 +6,7 @@ START_TEST(zero_decimal) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
+   printf("%.8f  bugfix\n", result);
   ck_assert_float_eq(0, result);
 }
 END_TEST
@@ -17,6 +18,7 @@ START_TEST(int_neg) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
+   printf("%.8f  bugfix\n", result);
   ck_assert_float_eq_tol(-INT_MAX, result, 8);
 }
 END_TEST
@@ -27,6 +29,7 @@ START_TEST(int_pos) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
+   printf("%f bugfix\n", result);
   ck_assert_float_eq(33, result);
 }
 END_TEST
@@ -38,7 +41,20 @@ START_TEST(int_with_exp) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
+   printf("%.8f bugfix\n", result);
   ck_assert_float_eq_tol(0, result, 8);
+}
+END_TEST
+
+START_TEST(int_with_exp_2) {
+  s21_decimal x = {{1, 0, 0, 0}};
+  set_exp(&x, 8);
+  printf("int_with_exp_2\n");
+  print_dec(&x);
+  float result = 0;
+  s21_from_decimal_to_float(x, &result);
+  printf("%.8f  bugfix\n", result);
+  ck_assert_float_eq_tol(1, result, 8);
 }
 END_TEST
 
@@ -51,6 +67,7 @@ Suite *suite_s21_from_decimal_to_float() {
   tcase_add_test(tc1, int_neg);
   tcase_add_test(tc1, int_pos);
   tcase_add_test(tc1, int_with_exp);
+  tcase_add_test(tc1, int_with_exp_2);
   suite_add_tcase(s1, tc1);
   return s1;
 }
