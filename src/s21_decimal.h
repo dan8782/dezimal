@@ -107,4 +107,5 @@ int left_shift_big(big_decimal *decimal_big);
 int is_zero_big(big_decimal *val);
 void copy_decimal_big(big_decimal *decimal, big_decimal origdec);
 int add_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
-big_decimal mul_by_10_big(big_decimal *dec);
+big_decimal *mul_by_10_big(big_decimal *dec);
+int normalize_big(big_decimal *big_1, big_decimal *big_2);

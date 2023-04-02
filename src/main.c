@@ -37,17 +37,22 @@ int main(int argc, char const *argv[]) {
   big_decimal big_dec2 = init();
   big_decimal res = init();
 
-  big_dec1.bits[0] = 1;
+  big_dec1.bits[0] = 7;
+  big_dec1.exp = 12;
   // for (int i = 0; i < 4; big_dec2.bits[i] = -1, i++);
-  big_dec2.bits[0] = 2;
+  big_dec2.bits[0] = 1;
+  big_dec2.exp = 3;
+
+  // normalize_big(&big_dec1, &big_dec2);
 
   print_big_mantissa(&big_dec1);
   print_big_mantissa(&big_dec2);
 
-  add_bitwise_big(big_dec1, big_dec2, &res);
-  mul_by_10_big(&res);  // проверяй
+  // add_bitwise_big(big_dec1, big_dec2, &res);
+  mul_by_10_big(&big_dec1);
+  mul_by_10_big(&big_dec1);
 
-  print_big_mantissa(&res);
-
+  print_big_mantissa(&big_dec1);
+  print_big_mantissa(&big_dec2);
   return 0;
 }

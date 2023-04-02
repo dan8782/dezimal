@@ -32,15 +32,18 @@ s21_decimal pow_10_decimal(int n) {
   return res;
 }
 
-big_decimal mul_by_10_big(big_decimal *dec) {
+big_decimal *mul_by_10_big(big_decimal *dec) {
   big_decimal buff_x = init();
   big_decimal buff_y = init();
   big_decimal res = init();
   copy_decimal_big(&buff_x, *dec);
   copy_decimal_big(&buff_y, *dec);
-  for (int j = 0; j < 3; left_shift_big(&buff_x), j++)
+  for (int j = 0; j < 3; j++, left_shift_big(&buff_x))
     ;
-  add_bitwise_big(buff_x, buff_y, &res);
+  left_shift_big(&buff_y);
 
-  return res;
+  add_bitwise_big(buff_x, buff_y, &res);
+  *dec = res;
+
+  return dec;
 }
