@@ -21,3 +21,13 @@ void print_dec(s21_decimal *dec) {
       printf("\n");
   }
 }
+
+void print_big_mantissa(big_decimal *dec) {
+  for (int i = 191; i >= 0; i--) {
+    printf("%d", get_bit_big(dec, i));
+    if (i % 32 == 0) {
+      printf("|");
+    }
+  }
+  printf("\n");
+}

@@ -6,7 +6,7 @@ START_TEST(zero_decimal) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
-   printf("%.8f  bugfix\n", result);
+  printf("%.8f  bugfix\n", result);
   ck_assert_float_eq(0, result);
 }
 END_TEST
@@ -18,7 +18,7 @@ START_TEST(int_neg) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
-   printf("%.8f  bugfix\n", result);
+  printf("%.8f  bugfix\n", result);
   ck_assert_float_eq_tol(-INT_MAX, result, 8);
 }
 END_TEST
@@ -29,8 +29,8 @@ START_TEST(int_pos) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
-   printf("%f bugfix\n", result);
-  ck_assert_float_eq(33, result);
+  printf("%f bugfix\n", result);
+  ck_assert_float_eq(33., result);
 }
 END_TEST
 
@@ -41,7 +41,7 @@ START_TEST(int_with_exp) {
   print_dec(&x);
   float result = 0;
   s21_from_decimal_to_float(x, &result);
-   printf("%.8f bugfix\n", result);
+  printf("%.8f bugfix\n", result);
   ck_assert_float_eq_tol(0, result, 8);
 }
 END_TEST

@@ -29,6 +29,12 @@ typedef struct {
   char status;
 } s21_decimal;
 
+typedef struct {
+  unsigned int bits[6];
+  int exp;
+  int sign;
+} big_decimal;
+
 typedef union {
   float f;
   struct {
@@ -86,3 +92,19 @@ int is_bitwise_equal(s21_decimal *x, s21_decimal *y);
 int is_bitwise_less(s21_decimal *a, s21_decimal *b);
 int is_bitwise_grater(s21_decimal *a, s21_decimal *b);
 int is_bitwise_less_or_equal(s21_decimal *a, s21_decimal *b);
+
+// BIG DECIMAL:
+
+big_decimal init();
+void set_zero_big(big_decimal *big_dec);
+big_decimal dec_to_big(s21_decimal dec);
+
+int get_bit_big(big_decimal *decimal, int index);
+big_decimal *set_bit_big(big_decimal *decimal, int index, bool sign);
+void print_big_mantissa(big_decimal *dec);
+
+int left_shift_big(big_decimal *decimal_big);
+int is_zero_big(big_decimal *val);
+void copy_decimal_big(big_decimal *decimal, big_decimal origdec);
+int add_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
+big_decimal mul_by_10_big(big_decimal *dec);

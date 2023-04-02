@@ -32,3 +32,29 @@ int add_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   }
   return err;
 }
+
+int add_bitwise_big(big_decimal x, big_decimal y, big_decimal *res) {
+  int err = 0;
+  big_decimal carry = init();
+  *res = init();
+
+  if (is_zero_big(&y)) {
+    copy_decimal_big(res, x);
+  } else {
+    while (!is_zero_big(&y)) {
+      for (int i = 0; i < 6; i++) {
+        carry.bits[i] = x.bits[i] & y.bits[i];
+        x.bits[i] ^= y.bits[i];
+      }
+
+      if (left_shift_big(&carry)) err = 1;
+      for (int i = 0; i < 6; i++) {
+        y.bits[i] = carry.bits[i];
+      }
+    }
+    for (int i = 0; i < 6; i++) {
+      res->bits[i] = x.bits[i];
+    }
+  }
+  return err;
+}
