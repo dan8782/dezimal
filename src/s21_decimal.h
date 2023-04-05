@@ -109,3 +109,15 @@ void copy_decimal_big(big_decimal *decimal, big_decimal origdec);
 int add_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
 big_decimal *mul_by_10_big(big_decimal *dec);
 int normalize_big(big_decimal *big_1, big_decimal *big_2);
+int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec);
+big_decimal dec_to_big(s21_decimal dec);
+int is_bitwise_equal_big(big_decimal *x, big_decimal *y);
+int is_bitwise_grater_big(big_decimal *a, big_decimal *b);
+int is_bitwise_less_or_equal_big(big_decimal *a, big_decimal *b);
+int is_bitwise_less_big(big_decimal *a, big_decimal *b);
+int sub_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
+int mod_bitwise_big(big_decimal x, big_decimal y, big_decimal *mod);
+big_decimal pow_10_decimal_big(int n);
+int div_int_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
+
+int banking_rounding(big_decimal *big_dec, big_decimal last_diget);

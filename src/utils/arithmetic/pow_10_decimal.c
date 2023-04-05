@@ -31,7 +31,9 @@ s21_decimal pow_10_decimal(int n) {
   }
   return res;
 }
-
+//////////////////////////////////////////////////////////////////
+// Умножает мантису BIG децимал на 10 !!! SIGN и EXP затираются //
+//////////////////////////////////////////////////////////////////
 big_decimal *mul_by_10_big(big_decimal *dec) {
   big_decimal buff_x = init();
   big_decimal buff_y = init();
@@ -46,4 +48,19 @@ big_decimal *mul_by_10_big(big_decimal *dec) {
   *dec = res;
 
   return dec;
+}
+
+big_decimal pow_10_decimal_big(int n) {
+  int i = 0;
+  big_decimal res = init();
+  res.bits[0] = 10;
+  if (n == 0) {
+    res.bits[0] = 1;
+  } else if (n > 0 && n < 30) {
+    while (i < n - 1) {
+      res = *mul_by_10_big(&res);
+      i++;
+    }
+  }
+  return res;
 }
