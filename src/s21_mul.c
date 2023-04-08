@@ -4,19 +4,19 @@ int addhelp(int a, int b);
 int add_bitwise(s21_decimal value_a, s21_decimal value_b, s21_decimal *result);
 int multiplyTwoNumbers(int a, int b);
 
-int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
-  // add_helper(value_1,value_2, result);
-  //   for (int i = 0; i < 3; i++) {
-  //     result->bits[i]= Bitwise_add(value_1.bits[i], value_2.bits[i]);
-  //   }
+// int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+//   // add_helper(value_1,value_2, result);
+//   //   for (int i = 0; i < 3; i++) {
+//   //     result->bits[i]= Bitwise_add(value_1.bits[i], value_2.bits[i]);
+//   //   }
 
-  printf("\n");
-  // result->bits[0] = multiplyTwoNumbers(1, 2147483647);
-  add_bitwise(value_1, value_2, result);
-  //   result->bits[1]= safe_shl(result->bits[1],1);
-  //   result->bits[1]= result->bits[1]<<1;
-  return 0;
-}
+//   printf("\n");
+//   // result->bits[0] = multiplyTwoNumbers(1, 2147483647);
+//   add_bitwise(value_1, value_2, result);
+//   //   result->bits[1]= safe_shl(result->bits[1],1);
+//   //   result->bits[1]= result->bits[1]<<1;
+//   return 0;
+// }
 
 // int Bitwise_add(s21_decimal value_a, s21_decimal value_b, s21_decimal
 // *result) {
@@ -69,4 +69,43 @@ int multiplyTwoNumbers(int a, int b) {
     }
   }
   return result;
+}
+
+int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+  int res = OK;
+  s21_decimal val1Cpy;
+  init_small(&val1Cpy);
+  s21_decimal temp_res;
+  init_small(&temp_res);
+  int j = 0;
+  for (int i = 0; i < 96; i++) {
+    init_small(&val1Cpy);
+    if (get_bit(value_2, i) == 1) {
+      val1Cpy = value_1;
+      j = 0;
+      while (j < i) {
+        if (left_shift(&val1Cpy)) {
+          break;
+        }
+        j++;
+      }
+      res = add_bitwise(val1Cpy, temp_res, &temp_res);
+    }
+  }
+  if (get_sign(&value_1) != get_sign(&value_2)) {
+    if (res == 1) {
+      res = 2;
+    }
+    set_sign(&temp_res, 1);
+  }
+  if (get_exp(&value_1) + get_exp(&value_2) > 29) {
+    set_exp(&temp_res, 29);
+  } else {
+    set_exp(&temp_res, get_exp(&value_1) + get_exp(&value_2));
+  }
+  if (res == OK) {
+    init_small(result);
+    *result = temp_res;
+  }
+  return res;
 }

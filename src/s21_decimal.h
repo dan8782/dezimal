@@ -44,6 +44,7 @@ typedef union {
   } parts;
 } float_cast;
 
+void init_small(s21_decimal *num);
 void print_dec(s21_decimal *dec);
 int get_bit(s21_decimal decimal, int index);
 int get_sign(s21_decimal *decl);
@@ -103,6 +104,7 @@ int get_bit_big(big_decimal *decimal, int index);
 big_decimal *set_bit_big(big_decimal *decimal, int index, bool sign);
 void print_big_mantissa(big_decimal *dec);
 
+int right_shift_big(big_decimal *decimal_big);
 int left_shift_big(big_decimal *decimal_big);
 int is_zero_big(big_decimal *val);
 void copy_decimal_big(big_decimal *decimal, big_decimal origdec);
