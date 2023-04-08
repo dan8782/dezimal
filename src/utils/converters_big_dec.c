@@ -1,5 +1,11 @@
 #include "../s21_decimal.h"
 
+
+// 7922816251426433759354395033[6] = 100...000
+int is_too_large(big_decimal *big_dec) {
+  return (!big_dec->bits[5] && !big_dec->bits[4] && big_dec->bits[3] == 1);
+}
+
 big_decimal dec_to_big(s21_decimal dec) {
   big_decimal big_dec;
   set_zero_big(&big_dec);
@@ -32,10 +38,17 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
     ten.bits[0] = 10;
     big_decimal last_diget = init();
     while (1) {
-      mod_bitwise_big(
-          big_dec, ten,
-          &last_diget);  // последняя цифра за мантисой 96-и битного числа
+      mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
+      printf("MOD:\n");
+      print_big_mantissa(&last_diget);
       div_int_bitwise_big(big_dec, ten, &big_dec);
+      printf("DIV by 10:\n");
+      print_big_mantissa(&big_dec);
+      if (is_too_large(&big_dec)) {
+        err = PLUS_INFINITY;
+        for (int i = 0; i < 3; big_dec.bits[i] = -1, i++);
+        break;
+        }
       if (!big_dec.bits[5] && !big_dec.bits[4] && !big_dec.bits[3]) {
         banking_rounding(&big_dec, last_diget);
         break;

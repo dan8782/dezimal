@@ -111,6 +111,7 @@ big_decimal *mul_by_10_big(big_decimal *dec);
 int normalize_big(big_decimal *big_1, big_decimal *big_2);
 int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec);
 big_decimal dec_to_big(s21_decimal dec);
+int is_too_large(big_decimal *big_dec);
 int is_bitwise_equal_big(big_decimal *x, big_decimal *y);
 int is_bitwise_grater_big(big_decimal *a, big_decimal *b);
 int is_bitwise_less_or_equal_big(big_decimal *a, big_decimal *b);
