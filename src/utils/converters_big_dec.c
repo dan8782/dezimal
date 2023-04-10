@@ -1,9 +1,17 @@
 #include "../s21_decimal.h"
 
-
 // 7922816251426433759354395033[6] = 100...000
 int is_too_large(big_decimal *big_dec) {
   return (!big_dec->bits[5] && !big_dec->bits[4] && big_dec->bits[3] == 1);
+}
+
+int is_max_decimal(big_decimal *big_dec) {
+  int res = 0;
+  int last_3_bits = !big_dec->bits[5] && !big_dec->bits[4] && !big_dec->bits[3];
+  int first_3_bits = big_dec->bits[2] == -1 && big_dec->bits[1] == -1 &&
+                     big_dec->bits[0] == -1;
+  if (last_3_bits && first_3_bits) res = 1;
+  return res;
 }
 
 big_decimal dec_to_big(s21_decimal dec) {
@@ -44,11 +52,12 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
       div_int_bitwise_big(big_dec, ten, &big_dec);
       printf("DIV by 10:\n");
       print_big_mantissa(&big_dec);
-      if (is_too_large(&big_dec)) {
+      if (is_too_large(&big_dec) || is_max_decimal(&big_dec)) {
         err = PLUS_INFINITY;
-        for (int i = 0; i < 3; big_dec.bits[i] = -1, i++);
+        for (int i = 0; i < 3; big_dec.bits[i] = -1, i++)
+          ;
         break;
-        }
+      }
       if (!big_dec.bits[5] && !big_dec.bits[4] && !big_dec.bits[3]) {
         banking_rounding(&big_dec, last_diget);
         break;
