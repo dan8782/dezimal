@@ -27,8 +27,6 @@ big_decimal dec_to_big(s21_decimal dec) {
   return big_dec;
 }
 
-// PLUS_INFINITY ??? надо разобрать
-// MINUS_INFINITY ??? надо разобрать
 int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
   int err = OK;
   set_zero(s21_dec);
@@ -46,12 +44,6 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
     ten.bits[0] = 10;
     big_decimal last_diget = init();
     while (1) {
-      mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
-      printf("MOD:\n");
-      print_big_mantissa(&last_diget);
-      div_int_bitwise_big(big_dec, ten, &big_dec);
-      printf("DIV by 10:\n");
-      print_big_mantissa(&big_dec);
       if (is_too_large(&big_dec) || is_max_decimal(&big_dec)) {
         if (sign)
           err = MINUS_INFINITY;
@@ -62,8 +54,12 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
           ;
         break;
       }
+      mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
+      div_int_bitwise_big(big_dec, ten, &big_dec);
+      // printf("DIV by 10:\n");
+      // print_big_mantissa(&big_dec);
       if (!big_dec.bits[5] && !big_dec.bits[4] && !big_dec.bits[3]) {
-        banking_rounding(&big_dec, last_diget);
+        err = banking_rounding(&big_dec, last_diget);
         break;
       }
     }

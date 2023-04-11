@@ -2,7 +2,7 @@
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int err = OK;
-
+  set_zero(result);
   big_decimal big_1 = dec_to_big(value_1);
   big_decimal big_2 = dec_to_big(value_2);
   big_decimal big_res = init();
@@ -10,8 +10,8 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   if (big_1.exp != big_2.exp) {
     normalize_big(&big_1, &big_2);
   }
-  print_big_mantissa(&big_1);
-  print_big_mantissa(&big_2);
+  // print_big_mantissa(&big_1);
+  // print_big_mantissa(&big_2);
   int minus_minus = big_1.sign && big_2.sign;
   int plus_plus = !big_1.sign && !big_2.sign;
 
@@ -24,9 +24,8 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
     big_res.sign =
         (grate && big_1.sign) ? 1 : 0;  // -max + min = -res || max - min = +res
   }
-  print_big_mantissa(&big_res);
+  // print_big_mantissa(&big_res);
   big_res.exp = big_1.exp;  // big_1.exp == big_2.exp после нормализации
-  err = big_to_dec(big_res,
-                   result);  // включить банковское округление в big_to_dec
+  err = big_to_dec(big_res, result);
   return err;
 }
