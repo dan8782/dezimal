@@ -53,8 +53,12 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
       printf("DIV by 10:\n");
       print_big_mantissa(&big_dec);
       if (is_too_large(&big_dec) || is_max_decimal(&big_dec)) {
-        err = PLUS_INFINITY;
-        for (int i = 0; i < 3; big_dec.bits[i] = -1, i++)
+        if (sign)
+          err = MINUS_INFINITY;
+        else
+          err = PLUS_INFINITY;
+        for (int i = 0; i < 3; big_dec.bits[i] = -1,
+                 i++)  // заполняем мантису еденицами, но это не обязательно
           ;
         break;
       }
