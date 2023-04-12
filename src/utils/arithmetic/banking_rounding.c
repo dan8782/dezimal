@@ -15,8 +15,10 @@ int banking_rounding(big_decimal *big_dec, big_decimal last_diget) {
 
   if (big_dec != NULL) {
     int equal_five = is_bitwise_equal_big(&last_diget, &five);
+    int grater_five = is_bitwise_grater_big(&last_diget, &five);
     int parity = get_bit_big(big_dec, 0);  // 0 - четная мантиса или 1- нечетная
-    if (equal_five && parity) add_bitwise_big(*big_dec, one, big_dec);
+    if ((equal_five && parity) || grater_five)
+      add_bitwise_big(*big_dec, one, big_dec);
   } else {
     err = 1;
   }

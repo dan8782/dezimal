@@ -34,7 +34,7 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
       big_dec.exp;  // забираю степень и знак так как int_bitwise занулит их
   int sign = big_dec.sign;
   int is_s21_dec = 1;
-
+  int count_exp = 0;
   for (int i = 3; i < 6; i++) {
     if (big_dec.bits[i]) is_s21_dec = 0;
   }
@@ -44,6 +44,11 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
     ten.bits[0] = 10;
     big_decimal last_diget = init();
     while (1) {
+      mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
+      div_int_bitwise_big(big_dec, ten, &big_dec);
+      count_exp++;
+      // printf("DIV by 10:\n");
+      // print_big_mantissa(&big_dec);
       if (is_too_large(&big_dec) || is_max_decimal(&big_dec)) {
         if (sign)
           err = MINUS_INFINITY;
@@ -54,10 +59,7 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
           ;
         break;
       }
-      mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
-      div_int_bitwise_big(big_dec, ten, &big_dec);
-      // printf("DIV by 10:\n");
-      // print_big_mantissa(&big_dec);
+
       if (!big_dec.bits[5] && !big_dec.bits[4] && !big_dec.bits[3]) {
         err = banking_rounding(&big_dec, last_diget);
         break;
@@ -68,7 +70,7 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
   for (int i = 0; i < 3; i++) {
     s21_dec->bits[i] = big_dec.bits[i];
   }
-  set_exp(s21_dec, exp);
+  set_exp(s21_dec, exp - count_exp);
   set_sign(s21_dec, sign);
 
   return err;
