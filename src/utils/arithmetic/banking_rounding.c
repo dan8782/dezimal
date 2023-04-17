@@ -7,7 +7,9 @@
 
 int banking_rounding(big_decimal *big_dec, big_decimal last_diget) {
   int err = 0;
-
+  // printf("banking:\n");
+  // print_big_mantissa(big_dec);
+  // print_big_mantissa(&last_diget);
   big_decimal five = init();
   five.bits[0] = 5;
   big_decimal one = init();
@@ -17,8 +19,10 @@ int banking_rounding(big_decimal *big_dec, big_decimal last_diget) {
     int equal_five = is_bitwise_equal_big(&last_diget, &five);
     int grater_five = is_bitwise_grater_big(&last_diget, &five);
     int parity = get_bit_big(big_dec, 0);  // 0 - четная мантиса или 1- нечетная
-    if ((equal_five && parity) || grater_five)
+    if ((equal_five && parity) || grater_five) {
       add_bitwise_big(*big_dec, one, big_dec);
+      err = is_too_large(big_dec);
+    }
   } else {
     err = 1;
   }

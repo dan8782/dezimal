@@ -16,5 +16,6 @@ Suite *suite_s21_is_equal();
 Suite *suite_s21_from_int_to_decimal();
 Suite *suite_div_int_bitwise();
 Suite *suite_add();
+Suite *suite_is_less();
 
 #endif  //  SRC_TESTS_TEST_MAIN_H_

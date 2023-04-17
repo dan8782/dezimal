@@ -10,8 +10,8 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   if (big_1.exp != big_2.exp) {
     normalize_big(&big_1, &big_2);
   }
-  print_big_mantissa(&big_1);
-  print_big_mantissa(&big_2);
+  // print_big_mantissa(&big_1);
+  // print_big_mantissa(&big_2);
   int minus_minus = big_1.sign && big_2.sign;
   int plus_plus = !big_1.sign && !big_2.sign;
 
@@ -27,5 +27,7 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   // print_big_mantissa(&big_res);
   big_res.exp = big_1.exp;  // big_1.exp == big_2.exp после нормализации
   err = big_to_dec(big_res, result);
+  printf("RESUL ERR = %d\n", err);
+  // print_dec(result);
   return err;
 }

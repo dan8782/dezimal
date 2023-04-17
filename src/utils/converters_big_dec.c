@@ -2,7 +2,7 @@
 
 // 7922816251426433759354395033[6] = 100...000
 int is_too_large(big_decimal *big_dec) {
-  return (!big_dec->bits[5] && !big_dec->bits[4] && big_dec->bits[3] == 1);
+  return (!big_dec->bits[5] && !big_dec->bits[4] && big_dec->bits[3]);
 }
 
 int is_max_decimal(big_decimal *big_dec) {
@@ -30,11 +30,12 @@ big_decimal dec_to_big(s21_decimal dec) {
 int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
   int err = OK;
   set_zero(s21_dec);
+  int count_exp = 0;
   int exp =
       big_dec.exp;  // забираю степень и знак так как int_bitwise занулит их
   int sign = big_dec.sign;
   int is_s21_dec = 1;
-  int count_exp = 0;
+
   for (int i = 3; i < 6; i++) {
     if (big_dec.bits[i]) is_s21_dec = 0;
   }
@@ -47,19 +48,6 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
       mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
       div_int_bitwise_big(big_dec, ten, &big_dec);
       count_exp++;
-      // printf("DIV by 10:\n");
-      // print_big_mantissa(&big_dec);
-      if (is_too_large(&big_dec) || is_max_decimal(&big_dec)) {
-        if (sign)
-          err = MINUS_INFINITY;
-        else
-          err = PLUS_INFINITY;
-        for (int i = 0; i < 3; big_dec.bits[i] = -1,
-                 i++)  // заполняем мантису еденицами, но это не обязательно
-          ;
-        break;
-      }
-
       if (!big_dec.bits[5] && !big_dec.bits[4] && !big_dec.bits[3]) {
         err = banking_rounding(&big_dec, last_diget);
         break;

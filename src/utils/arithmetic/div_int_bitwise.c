@@ -72,7 +72,7 @@ int div_int_bitwise_big(big_decimal x, big_decimal y, big_decimal *res) {
         for (int k = 0; k < i; k++, left_shift_big(&one))
           ;  // 1 << i;  2^i
 
-        add_bitwise_big(*res, one, res);  // adding 2^i to the answer
+        err = add_bitwise_big(*res, one, res);  // adding 2^i to the answer
       }
     }
   }

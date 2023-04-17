@@ -7,7 +7,8 @@ int main() {
                           // suite_s21_from_int_to_decimal(),
                           //  suite_s21_is_equal(),
                           // suite_div_int_bitwise(),
-                          suite_add()};
+                          // suite_add(),
+                          suite_is_less()};
 
   SRunner *suite_runner = srunner_create(test_suites[0]);
   srunner_set_fork_status(suite_runner, CK_NOFORK);
