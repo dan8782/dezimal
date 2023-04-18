@@ -13,7 +13,7 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
     flag = 1;
     // printf("bug 2 \n");
   } else {
-    *dst = (int)truncated.bits[0];
+    *dst = truncated.bits[0];
     // printf("%d func test \n", *dst);
     int sign = get_sign(&src);
 

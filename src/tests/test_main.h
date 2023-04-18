@@ -9,11 +9,11 @@
 
 #include "../s21_decimal.h"
 
-Suite *suite_s21_from_decimal_to_int();
 Suite *suite_s21_from_decimal_to_float();
 Suite *suite_s21_from_float_to_decimal();
-
+Suite *suite_from_decimal_to_int();
 Suite *suite_from_int_to_decimal();
+Suite *suite_truncate();
 Suite *suite_add();
 Suite *suite_is_less();
 Suite *suite_is_equal();
