@@ -12,10 +12,12 @@
 Suite *suite_s21_from_decimal_to_int();
 Suite *suite_s21_from_decimal_to_float();
 Suite *suite_s21_from_float_to_decimal();
-Suite *suite_s21_is_equal();
 Suite *suite_s21_from_int_to_decimal();
-Suite *suite_div_int_bitwise();
 Suite *suite_add();
 Suite *suite_is_less();
+Suite *suite_is_equal();
+Suite *suite_is_greater();
+Suite *suite_is_greater_or_equal();
+Suite *suite_is_less_or_equal();
 
 #endif  //  SRC_TESTS_TEST_MAIN_H_

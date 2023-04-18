@@ -139,26 +139,25 @@ static s21_decimal rhs[] = {
 };
 
 static int result[] = {
-    1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0,
-    0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-    1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0,
+    1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0,
+    0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1,
+    1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0,
 };
 
 START_TEST(test) {
   for (size_t i = 0; i < sizeof(lhs) / sizeof(s21_decimal); ++i) {
-    // printf("i = %d\n", i);
-    int ret = s21_is_equal(lhs[i], rhs[i]);
+    int ret = s21_is_less_or_equal(lhs[i], rhs[i]);
     ck_assert_int_eq(ret, result[i]);
   }
 }
 END_TEST
 
-Suite *suite_is_equal(void) {
+Suite *suite_is_less_or_equal(void) {
   Suite *s;
   TCase *tc;
 
-  s = suite_create("s21_is_equal");
-  tc = tcase_create("s21_is_equal");
+  s = suite_create("s21_is_less_or_equal");
+  tc = tcase_create("s21_is_less_orequal");
 
   if (s != NULL && tc != NULL) {
     tcase_add_test(tc, test);
