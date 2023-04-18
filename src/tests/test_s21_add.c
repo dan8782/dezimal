@@ -201,7 +201,7 @@ END_TEST
 START_TEST(error_test) {
   for (size_t i = 0; i < sizeof(err_num1) / sizeof(s21_decimal); ++i) {
     s21_decimal tmp;
-    printf("i = %i\n", i);
+    // printf("i = %i\n", i);
     int ret = s21_add(err_num1[i], err_num2[i], &tmp);
     // if (tmp.bits[0] == 0) {
     //   tmp.bits[0] = 1;

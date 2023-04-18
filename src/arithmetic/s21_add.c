@@ -24,10 +24,11 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
     big_res.sign =
         (grate && big_1.sign) ? 1 : 0;  // -max + min = -res || max - min = +res
   }
-  // print_big_mantissa(&big_res);
+
   big_res.exp = big_1.exp;  // big_1.exp == big_2.exp после нормализации
   err = big_to_dec(big_res, result);
-  printf("RESUL ERR = %d\n", err);
-  // print_dec(result);
+
+  if (err && big_res.sign) err = MINUS_INFINITY;
+  // printf("ERROR = %d\n", err);
   return err;
 }

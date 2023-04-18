@@ -132,7 +132,7 @@ static int result[] = {
 
 START_TEST(test) {
   for (size_t i = 0; i < sizeof(lhs) / sizeof(s21_decimal); ++i) {
-    printf("i = %i\n", i);
+    // printf("i = %d\n", i);
     int ret = s21_is_less(lhs[i], rhs[i]);
     ck_assert_int_eq(ret, result[i]);
   }
