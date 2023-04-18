@@ -1,21 +1,13 @@
-// #include "s21_decimal.h"
+#include "s21_decimal.h"
 
-// int main(int argc, char const *argv[]) {
-//   //   printf("START...\n");
-//   //   s21_decimal val1 = {-1, -1, -1, 0};  //7922816251426433759354395033(5)
-//   s21_decimal val1 = {0x80000000, 0x80000000, 0x80000000, 0x801C0000};
-//   //   set_exp(&val1, 0);
-//   //   set_sign(&val1, 0);
-//   //   // print_dec(&val1);
-//   //   s21_decimal val2 = {6, 0, 0, 0};  // 0.5
-//   s21_decimal val2 = {0x80000000, 0x80000000, 0x80000000, 0x801C0000};
-//   //   set_exp(&val2, 1);
-//   //   set_sign(&val2, 0);
-//   s21_decimal result = {0};
+int main(int argc, char const *argv[]) {
+  printf("START...\n");
+  s21_decimal val1 = {0xFFFFFFFE, 0xFFFFFFFF, 0xFFFFFFFF,
+                      0x00000000};  // 79228162514264337593543950334
+  s21_decimal val2 = {1, 0, 0, 0};
+  s21_decimal result = {0};
+  div_int_bitwise(val1, val2, &result);
+  print_dec(&result);
 
-//   int err = s21_add(val1, val2, &result);
-//   printf("ERROR: %d\n", err);
-//   print_dec(&result);
-//   printf("%u", result.bits[3]);
-//   return 0;
-// }
+  return 0;
+}
