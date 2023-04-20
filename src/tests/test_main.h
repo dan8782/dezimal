@@ -22,5 +22,6 @@ Suite *suite_is_greater_or_equal();
 Suite *suite_is_less_or_equal();
 Suite *suite_mul();
 Suite *suite_sub();
+Suite *suite_negate();
 
 #endif  //  SRC_TESTS_TEST_MAIN_H_
