@@ -122,5 +122,7 @@ int sub_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
 int mod_bitwise_big(big_decimal x, big_decimal y, big_decimal *mod);
 big_decimal pow_10_decimal_big(int n);
 int div_int_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
+s21_decimal div_int_test(s21_decimal dividend, s21_decimal divisor,
+                         s21_decimal *result);
 
 int banking_rounding(big_decimal *big_dec, big_decimal last_diget);

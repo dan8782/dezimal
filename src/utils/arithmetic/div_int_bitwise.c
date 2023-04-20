@@ -7,7 +7,7 @@
 int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   int err = OK;
   int less = is_bitwise_less(&x, &y);  // if |x| < |a| return 1
-
+  set_zero(res);
   if (is_zero(&y)) {
     err = DIVISION_BY_ZERO;
     res->status = DIVISION_BY_ZERO;
@@ -26,14 +26,19 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
         }  // переполнение
         // left_shift(&buff_y);
       }
-      if (is_bitwise_less_or_equal(&buff_y, &x)) {  // checking if: y * 2^i <= x
-        sub_bitwise(x, buff_y, &x);                 // subtracting y << i from x
+      if (is_bitwise_less_or_equal(&buff_y, &x) &&
+          !get_bit(buff_y, 95)) {    // checking if: y * 2^i <= x
+        sub_bitwise(x, buff_y, &x);  // subtracting y << i from x
         // print_dec(&x);
         s21_decimal one = {1, 0, 0, 0};  // сбрасываем изменненный one
         for (int k = 0; k < i; k++, left_shift(&one))
           ;  // 1 << i;  2^i
 
         add_bitwise(*res, one, res);  // adding 2^i to the answer
+      } else if (get_bit(buff_y, 95)) {
+        s21_decimal one = {1, 0, 0, 0};
+        // left_shift(&one);
+        add_bitwise(*res, one, res);
       }
     }
   }

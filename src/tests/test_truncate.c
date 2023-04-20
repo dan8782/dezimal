@@ -116,7 +116,7 @@ static s21_decimal result[] = {
 START_TEST(test) {
   for (size_t i = 0; i < sizeof(arr) / sizeof(s21_decimal); ++i) {
     s21_decimal tmp;
-    printf("i = %zu\n", i);
+    // printf("i = %zu\n", i);
     int ret = s21_truncate(arr[i], &tmp);
     ck_assert_int_eq(tmp.bits[0], result[i].bits[0]);
     ck_assert_int_eq(tmp.bits[1], result[i].bits[1]);

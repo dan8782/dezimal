@@ -12,8 +12,8 @@ int main() {
       suite_is_greater_or_equal(),
       suite_is_less_or_equal(),
       suite_add(),
-      suite_sub()
-      // suite_truncate(),
+      suite_sub(),
+      suite_truncate()
       // suite_mul(),
   };
   SRunner *suite_runner = srunner_create(test_suites[0]);
