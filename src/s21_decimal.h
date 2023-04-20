@@ -73,6 +73,7 @@ int s21_round(s21_decimal dec, s21_decimal *res);
 void copy_decimal(s21_decimal *decimal, s21_decimal origdec);
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 
 s21_decimal *set_bit(s21_decimal *decimal, int index, bool sign);
@@ -105,6 +106,7 @@ void print_big_mantissa(big_decimal *dec);
 
 int left_shift_big(big_decimal *decimal_big);
 int is_zero_big(big_decimal *val);
+void init_small(s21_decimal *num);
 void copy_decimal_big(big_decimal *decimal, big_decimal origdec);
 int add_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
 big_decimal *mul_by_10_big(big_decimal *dec);

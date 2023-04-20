@@ -24,3 +24,10 @@ big_decimal init() {
 
   return big_dec;
 }
+
+void init_small(s21_decimal *num) {
+  num->bits[0] = 0U;
+  num->bits[1] = 0U;
+  num->bits[2] = 0U;
+  num->bits[3] = 0U;
+}

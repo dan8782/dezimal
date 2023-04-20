@@ -20,5 +20,7 @@ Suite *suite_is_equal();
 Suite *suite_is_greater();
 Suite *suite_is_greater_or_equal();
 Suite *suite_is_less_or_equal();
+Suite *suite_mul();
+Suite *suite_sub();
 
 #endif  //  SRC_TESTS_TEST_MAIN_H_
