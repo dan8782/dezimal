@@ -18,10 +18,12 @@ int s21_round(s21_decimal dec, s21_decimal *res) {
   s21_decimal scale = {0};
   set_zero(res);
 
-  if (exp) {
+  if (exp > 28) {
+    err = 1;
+  } else if (exp < 29) {
     s21_decimal scale =
         pow_10_decimal(exp - 1);  // на один знак больше чем целая часть
-    //div_int_bitwise(dec, scale, &buff);
+    // div_int_bitwise(dec, scale, &buff);
     big_decimal val_big = dec_to_big(dec);
     big_decimal scale_big = dec_to_big(scale);
     big_decimal big_res = init();
@@ -35,7 +37,7 @@ int s21_round(s21_decimal dec, s21_decimal *res) {
   } else {
     copy_decimal(res, dec);  // учитывает знак, степень равно 0
   }
-  print_dec(res);
+  // print_dec(res);
 
   return err;
 }

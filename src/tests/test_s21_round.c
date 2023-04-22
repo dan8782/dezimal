@@ -120,11 +120,11 @@ static s21_decimal result[] = {
     {{0x24285C43, 0x01B2140C, 0x00000000, 0x80000000}},  //-122182182271212611
     {{0x0001E241, 0x00000000, 0x00000000, 0x00000000}},  // 123457
     {{0x00000000, 0x00000000, 0x00000000, 0x00000000}},  // 0
-    {{0x00000000, 0x00000000, 0x00000000, 0x80000000}},  // 0
+    {{0x00000000, 0x00000000, 0x00000000, 0x00000000}},  // 0
     {{0x00000000, 0x00000000, 0x00000000, 0x00000000}},  // 0
     {{0x000010C7, 0x00000000, 0x00000000, 0x00000000}},  // 4295
     {{0xAC471B48, 0x0000A7C5, 0x00000000, 0x00000000}},  // 184467440737096
-    {{0x00000000, 0x00000000, 0x00000000, 0x00000000}},  // 0
+    {{0x00000000, 0x00000000, 0x00000000, 0x80000000}},  // 0
     {{0x000010C7, 0x00000000, 0x00000000, 0x80000000}},  //-4295
     {{0x00000008, 0x00000000, 0x00000000, 0x00000000}},  // 8
     {{0xAC471B48, 0x0000A7C5, 0x00000000, 0x80000000}},  //-184467440737096
@@ -134,7 +134,7 @@ static s21_decimal result[] = {
 START_TEST(test) {
   for (size_t i = 0; i < sizeof(arr) / sizeof(s21_decimal); ++i) {
     s21_decimal tmp;
-    printf("i = %zu\n", i);
+    // printf("i = %zu\n", i);
     int ret = s21_round(arr[i], &tmp);
     ck_assert_int_eq(tmp.bits[0], result[i].bits[0]);
     ck_assert_int_eq(tmp.bits[1], result[i].bits[1]);
@@ -166,7 +166,7 @@ Suite *suite_round(void) {
 
   if (s != NULL && tc != NULL) {
     tcase_add_test(tc, test);
-   // tcase_add_test(tc, error_test);
+    tcase_add_test(tc, error_test);
     suite_add_tcase(s, tc);
   }
 
