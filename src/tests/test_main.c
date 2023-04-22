@@ -4,6 +4,7 @@ int main() {
   Suite *test_suites[] = {// suite_s21_from_decimal_to_int(),
                           // suite_s21_from_decimal_to_float(),
                           // suite_s21_from_float_to_decimal(),
+                          suite_from_decimal_to_float(),
                           suite_from_int_to_decimal(), suite_is_equal(),
                           suite_is_less(), suite_is_greater(),
                           suite_is_greater_or_equal(), suite_is_less_or_equal(),
