@@ -25,5 +25,6 @@ Suite *suite_mul();
 Suite *suite_sub();
 Suite *suite_negate();
 Suite *suite_floor();
+Suite *suite_round();
 
 #endif  //  SRC_TESTS_TEST_MAIN_H_
