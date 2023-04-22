@@ -20,6 +20,7 @@ Suite *suite_is_equal();
 Suite *suite_is_greater();
 Suite *suite_is_greater_or_equal();
 Suite *suite_is_less_or_equal();
+Suite *suite_is_not_equal();
 Suite *suite_mul();
 Suite *suite_sub();
 Suite *suite_negate();

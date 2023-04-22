@@ -59,6 +59,7 @@ int s21_is_greater_or_equal(s21_decimal x, s21_decimal y);
 int s21_is_less_or_equal(s21_decimal x, s21_decimal y);
 int s21_is_less(s21_decimal x, s21_decimal y);
 int s21_is_equal(s21_decimal x, s21_decimal y);
+int s21_is_not_equal(s21_decimal x, s21_decimal y);
 
 int s21_from_int_to_decimal(int src, s21_decimal *dst);
 int s21_from_float_to_decimal(float src, s21_decimal *dst);
