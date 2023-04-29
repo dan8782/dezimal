@@ -23,6 +23,7 @@ Suite *suite_is_less_or_equal();
 Suite *suite_is_not_equal();
 Suite *suite_mul();
 Suite *suite_sub();
+Suite *suite_div();
 Suite *suite_negate();
 Suite *suite_floor();
 Suite *suite_round();

@@ -75,7 +75,10 @@ void copy_decimal(s21_decimal *decimal, s21_decimal origdec);
 
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
+int normal_div(big_decimal big_1, big_decimal big_2, big_decimal *big_res,
+               int *dig_befor_point, int *dig_after_point);
 
 s21_decimal *set_bit(s21_decimal *decimal, int index, bool sign);
 s21_decimal *unset_bit(s21_decimal *decimal, int index);
