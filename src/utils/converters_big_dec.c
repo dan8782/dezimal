@@ -48,6 +48,7 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
       div_int_bitwise_big(big_dec, ten, &big_dec);
       exp -= 1;
       if (exp < 0) {
+        exp = 0;
         err = 1;
         break;
       } else if (!big_dec.bits[5] && !big_dec.bits[4] && !big_dec.bits[3]) {
@@ -56,10 +57,20 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
       }
     }
   }
+
+  if (exp > 28) {
+    while (exp-- > 28) {
+      big_decimal ten = init();
+      ten.bits[0] = 10;
+      div_int_bitwise_big(big_dec, ten, &big_dec);
+    }
+    exp = 28;
+  }
   //  завершено приведение BIG dec в обычный децимал
   for (int i = 0; i < 3; i++) {
     s21_dec->bits[i] = big_dec.bits[i];
   }
+
   set_exp(s21_dec, exp);
   set_sign(s21_dec, sign);
 

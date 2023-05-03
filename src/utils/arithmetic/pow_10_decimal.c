@@ -56,7 +56,7 @@ big_decimal pow_10_decimal_big(int n) {
   res.bits[0] = 10;
   if (n == 0) {
     res.bits[0] = 1;
-  } else if (n > 0 && n < 30) {
+  } else if (n > 0 && n < 57) {
     while (i < n - 1) {
       res = *mul_by_10_big(&res);
       i++;

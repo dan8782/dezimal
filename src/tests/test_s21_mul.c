@@ -121,7 +121,7 @@ static int err_result[] = {
 START_TEST(test) {
   for (size_t i = 0; i < sizeof(num1) / sizeof(s21_decimal); ++i) {
     s21_decimal tmp;
-    printf("i = %zu\n", i);
+    // printf("i = %zu\n", i);
     int ret = s21_mul(num1[i], num2[i], &tmp);
     ck_assert_int_eq(tmp.bits[0], result[i].bits[0]);
     ck_assert_int_eq(tmp.bits[1], result[i].bits[1]);
@@ -135,6 +135,7 @@ END_TEST
 START_TEST(error_test) {
   for (size_t i = 0; i < sizeof(err_num1) / sizeof(s21_decimal); ++i) {
     s21_decimal tmp;
+    // printf("i = %zu\n", i);
     int ret = s21_mul(err_num1[i], err_num2[i], &tmp);
 
     if (tmp.bits[0] == 0) {
@@ -154,7 +155,7 @@ Suite *suite_mul(void) {
 
   if (s != NULL && tc != NULL) {
     tcase_add_test(tc, test);
-    // tcase_add_test(tc, error_test);
+    tcase_add_test(tc, error_test);
     suite_add_tcase(s, tc);
   }
 
