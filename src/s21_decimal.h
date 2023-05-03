@@ -109,6 +109,7 @@ big_decimal *set_bit_big(big_decimal *decimal, int index, bool sign);
 void print_big_mantissa(big_decimal *dec);
 
 int left_shift_big(big_decimal *decimal_big);
+int right_shift_big(big_decimal *decimal_big);
 int is_zero_big(big_decimal *val);
 void init_small(s21_decimal *num);
 void copy_decimal_big(big_decimal *decimal, big_decimal origdec);
@@ -130,3 +131,5 @@ s21_decimal div_int_test(s21_decimal dividend, s21_decimal divisor,
                          s21_decimal *result);
 
 int banking_rounding(big_decimal *big_dec, big_decimal last_diget);
+int get_last_bit(s21_decimal *val1);
+int get_last_bit_big(big_decimal *val1);

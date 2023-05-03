@@ -33,7 +33,12 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
         s21_decimal one = {1, 0, 0, 0};  // сбрасываем изменненный one
         for (int k = 0; k < i; k++, left_shift(&one))
           ;  // 1 << i;  2^i
-
+        if (get_bit(buff_y, 95)) {
+          int last_bit = get_last_bit(&buff_y);
+          if (last_bit)
+            for (int j = 0; j < (96 - last_bit); j++, right_shift(&one))
+              ;
+        }
         add_bitwise(*res, one, res);  // adding 2^i to the answer
       } else if (get_bit(buff_y, 95)) {
         s21_decimal one = {1, 0, 0, 0};
@@ -76,11 +81,36 @@ int div_int_bitwise_big(big_decimal x, big_decimal y, big_decimal *res) {
         one.bits[0] = 1;
         for (int k = 0; k < i; k++, left_shift_big(&one))
           ;  // 1 << i;  2^i
-
+        if (get_bit_big(&buff_y, 191)) {
+          int last_bit = get_last_bit_big(&buff_y);
+          if (last_bit)
+            for (int j = 0; j < (192 - last_bit); j++, right_shift_big(&one))
+              ;
+        }
         err = add_bitwise_big(*res, one, res);  // adding 2^i to the answer
       }
     }
   }
 
   return err;
+}
+
+int get_last_bit(s21_decimal *val1) {
+  int i = 0;
+  if (val1 != NULL) {
+    for (; i < 96; i++) {
+      if (get_bit(*val1, i)) break;
+    }
+  }
+  return i;
+}
+
+int get_last_bit_big(big_decimal *val1) {
+  int i = 0;
+  if (val1 != NULL) {
+    for (; i < 192; i++) {
+      if (get_bit_big(val1, i)) break;
+    }
+  }
+  return i;
 }
