@@ -133,3 +133,6 @@ s21_decimal div_int_test(s21_decimal dividend, s21_decimal divisor,
 int banking_rounding(big_decimal *big_dec, big_decimal last_diget);
 int get_last_bit(s21_decimal *val1);
 int get_last_bit_big(big_decimal *val1);
+void cut_zeros(s21_decimal *value);
+s21_decimal s21_whole(s21_decimal value_1, s21_decimal value_2,
+                      s21_decimal *result);
