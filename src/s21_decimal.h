@@ -15,7 +15,7 @@
 
 static char *StatusName[] = {
     "OK", "the number is too large or equal to infinity",
-    "the number is too small or equal to negative infinity", "division by 0"};
+    "the number is too small or equal to negative infinity", "division by 0 "};
 
 typedef enum enumDiv_status {
   OK,
