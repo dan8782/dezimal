@@ -7,7 +7,9 @@ all: test
 test: ./tests/test_main.c
 	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o tests.exe
 	./tests.exe
-
+s21_decimal.a: $(OBJ)
+	ar rcs s21_decimal.a $^
+	rm *.o
 gcov_report:
 	gcc --coverage $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o run_cov
 	./run_cov
