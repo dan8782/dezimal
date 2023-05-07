@@ -10,7 +10,8 @@ int s21_from_decimal_to_int(s21_decimal src, int *dst) {
       err = 1;
     } else {
       *dst = src.bits[0];
-      if (src.bits[3] % 2) *dst *= -1;
+      // if (src.bits[3] % 2) *dst *= -1;
+      if (get_sign(&src)) *dst *= -1;
     }
   }
   return err;
