@@ -1,23 +1,29 @@
 #include "../s21_decimal.h"
 
-int s21_from_decimal_to_int(s21_decimal src, int *dst) {
-  s21_decimal truncated = {0};
-
-  int flag = 0;
-  int error = s21_truncate(src, &truncated);
-
-  if (error == 1) {
-    flag = 1;
-    // printf("bug 1\n");
-  } else if (truncated.bits[1] || truncated.bits[2]) {
-    flag = 1;
-    // printf("bug 2 \n");
+int s21_from_decimal_to_int(s21_decimal src, int *dest) {
+  int error = 0;
+  int sign = get_sign(&src);
+  if (src.bits[2] == 0 && src.bits[1] == 0 && (dest != NULL) &&
+      (((src.bits[0] <= (unsigned int)INT_MAX) && (sign == 0)) ||
+       ((src.bits[0] <= (unsigned int)s21_abs(INT_MIN)) && (sign))) &&
+      (get_exp(&src) < 29)) {
+    *dest = 0;
+    if (get_exp(&src) != 0) {
+      s21_truncate(src, &src);
+    }
+    *dest = (sign) ? -(int)src.bits[0] : (int)src.bits[0];
   } else {
-    *dst = truncated.bits[0];
-    // printf("%d func test \n", *dst);
-    int sign = get_sign(&src);
-
-    if (sign) *dst = -*dst;
+    if (dest != NULL) {
+      *dest = 0;
+    }
+    error = 1;
   }
-  return flag;
+  return error;
+}
+
+int s21_abs(int x) {
+  if (x < 0) {
+    x *= -1;
+  }
+  return x;
 }

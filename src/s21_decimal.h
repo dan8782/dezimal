@@ -107,7 +107,7 @@ big_decimal dec_to_big(s21_decimal dec);
 int get_bit_big(big_decimal *decimal, int index);
 big_decimal *set_bit_big(big_decimal *decimal, int index, bool sign);
 void print_big_mantissa(big_decimal *dec);
-
+int s21_abs(int x);
 int left_shift_big(big_decimal *decimal_big);
 int right_shift_big(big_decimal *decimal_big);
 int is_zero_big(big_decimal *val);
