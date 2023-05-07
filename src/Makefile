@@ -3,15 +3,16 @@ FLAGS_STANDART =  -Wall -Wextra -Werror -std=c11 -g -fsanitize=address
 SRCS = $(shell find . -type f -name '*.c' -print)
 SRCS_LIB = $(shell find . -path ./tests -prune -o -name '*.c' -print)
 
-all: test
+all: s21_decimal.a test
 
 s21_decimal.a: $(SRCS_LIB)
 	gcc $(FLAGS_STANDART) -c $(SRCS_LIB)
 	ar r s21_decimal.a *.o
+	rm -rf *.o
 
 test: ./tests/test_main.c
-	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o tests.exe
-	./tests.exe
+	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o tests_run
+	./tests_run
 
 gcov_report:
 	gcc --coverage $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o run_cov
@@ -21,8 +22,8 @@ gcov_report:
 	open ./report/index.html
 	
 clean:
-	rm -rf tests.exe.dSYM
-	rm -rf tests.exe
+	rm -rf tests_run.dSYM
+	rm -rf tests_run
 	rm -rf *.gcda *.gcno *.info *.a *.o
 	rm -rf run_cov
 	rm -rf run_cov.dSYM
