@@ -11,13 +11,13 @@ int s21_floor(s21_decimal dec, s21_decimal *res) {
   int sign = get_sign(&dec);
   int exp = get_exp(&dec);
 
-  s21_decimal one = {1, 0, 0, 0};
+  s21_decimal one = {{1, 0, 0, 0}};
   set_zero(res);
 
   if (!is_zero(&dec)) {  // для условия ниже, слуячай -0: 0 / 10^n
     err = s21_truncate(dec, res);  // результат - целая часть
     s21_decimal scale = pow_10_decimal(exp);
-    s21_decimal mod = {0, 0, 0, 0};
+    s21_decimal mod = {{0, 0, 0, 0}};
     mod_bitwise(dec, scale, &mod);
 
     if (sign && exp && !is_zero(&mod))  // если отрицательное и не целое

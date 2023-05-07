@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -26,7 +27,6 @@ typedef enum enumDiv_status {
 
 typedef struct {
   unsigned int bits[4];
-  char status;
 } s21_decimal;
 
 typedef struct {

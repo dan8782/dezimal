@@ -1,22 +1,24 @@
-FLAGS_FOR_TEST = -lcheck -lm -lpthread 
-FLAGS_STANDART =  -std=c11 -g -fsanitize=address
+FLAGS_FOR_TEST = $(shell pkg-config --libs --cflags check)
+FLAGS_STANDART =  -Wall -Wextra -Werror -std=c11 -g -fsanitize=address
 SRCS = $(shell find . -type f -name '*.c' -print)
+SRCS_LIB = $(shell find . -path ./tests -prune -o -name '*.c' -print)
 
 all: test
+
+s21_decimal.a: $(SRCS_LIB)
+	gcc $(FLAGS_STANDART) -c $(SRCS_LIB)
+	ar r s21_decimal.a *.o
 
 test: ./tests/test_main.c
 	gcc $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o tests.exe
 	./tests.exe
-s21_decimal.a: $(OBJ)
-	ar rcs s21_decimal.a $^
-	rm *.o
+
 gcov_report:
 	gcc --coverage $(FLAGS_STANDART) $(FLAGS_FOR_TEST) $(SRCS) -o run_cov
 	./run_cov
 	lcov -c -d . -o s21_decimal.info --exclude "*test*"
 	genhtml --footer "clockber, brillpau, burnerok" --dark-mode -o report s21_decimal.info
 	open ./report/index.html
-	make clean
 	
 clean:
 	rm -rf tests.exe.dSYM

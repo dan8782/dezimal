@@ -7,7 +7,7 @@ int mod_bitwise(s21_decimal x, s21_decimal y, s21_decimal *mod) {
 
   if (is_zero(&y)) {
     err = DIVISION_BY_ZERO;
-    mod->status = DIVISION_BY_ZERO;
+    // mod->status = DIVISION_BY_ZERO;
   } else if (less) {
     copy_decimal(mod, x);  // целая часть 0 остаток равен делимому
   } else {

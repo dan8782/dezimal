@@ -8,8 +8,9 @@ int is_too_large(big_decimal *big_dec) {
 int is_max_decimal(big_decimal *big_dec) {
   int res = 0;
   int last_3_bits = !big_dec->bits[5] && !big_dec->bits[4] && !big_dec->bits[3];
-  int first_3_bits = big_dec->bits[2] == -1 && big_dec->bits[1] == -1 &&
-                     big_dec->bits[0] == -1;
+  int first_3_bits = big_dec->bits[2] == UINT_MAX &&
+                     big_dec->bits[1] == UINT_MAX &&
+                     big_dec->bits[0] == UINT_MAX;
   if (last_3_bits && first_3_bits) res = 1;
   return res;
 }

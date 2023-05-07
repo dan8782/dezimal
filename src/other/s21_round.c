@@ -9,18 +9,18 @@
 int s21_round(s21_decimal dec, s21_decimal *res) {
   int err = 0;
   int exp = get_exp(&dec);
-  s21_decimal mod = {0};
-  s21_decimal buff = {0};
-  s21_decimal last_number = {0};
-  s21_decimal ten = {10, 0, 0, 0};
-  s21_decimal five = {5, 0, 0, 0};
-  s21_decimal one = {1, 0, 0, 0};
-  s21_decimal scale = {0};
+  s21_decimal buff = {{0, 0, 0, 0}};
+  s21_decimal last_number = {{0, 0, 0, 0}};
+  s21_decimal ten = {{10, 0, 0, 0}};
+  s21_decimal five = {{5, 0, 0, 0}};
+  s21_decimal one = {{1, 0, 0, 0}};
   set_zero(res);
 
   if (exp > 28) {
     err = 1;
   } else if (exp < 29) {
+    // s21_decimal mod = {{0, 0, 0, 0}};
+    //  s21_decimal scale = {{0, 0, 0, 0}};
     s21_decimal scale =
         pow_10_decimal(exp - 1);  // на один знак больше чем целая часть
     // div_int_bitwise(dec, scale, &buff);

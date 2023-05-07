@@ -10,7 +10,7 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   set_zero(res);
   if (is_zero(&y)) {
     err = DIVISION_BY_ZERO;
-    res->status = DIVISION_BY_ZERO;
+    // res->status = DIVISION_BY_ZERO;
   } else if (less) {
     set_zero(res);  // целая часть 0
   } else {

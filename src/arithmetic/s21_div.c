@@ -4,7 +4,7 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int err = 0;
   int scale_less_zero = 0;
   int scale_exp = 0;
-  int dig_befor_point = 0;
+  // int dig_befor_point = 0;
   int exp = 0;
   set_zero(result);
   if (is_zero(&value_2)) {
