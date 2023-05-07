@@ -53,8 +53,9 @@ static int dst[] = {
 START_TEST(test) {
   for (size_t i = 0, j = 0; i < sizeof(src) / sizeof(s21_decimal); ++i) {
     int tmp;
-    // printf("%zu\n", i);
+    printf("%zu\n", i);
     int ret = s21_from_decimal_to_int(src[i], &tmp);
+    printf("res = %d\n", tmp);
     if (ret == 0) {
       ck_assert_int_eq(tmp, dst[j]);
       ++j;

@@ -2,7 +2,7 @@
 
 int s21_from_decimal_to_int(s21_decimal src, int *dst) {
   int err = 0;
-  if (dst != NULL) {
+  if (dst == NULL) {
     err = 1;
   } else {
     if (get_exp(&src)) s21_truncate(src, &src);
