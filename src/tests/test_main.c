@@ -3,7 +3,7 @@
 int main() {
   Suite *test_suites[] = {// suite_from_decimal_to_int(),
                           // suite_from_decimal_to_float(),
-                          // suite_from_float_to_decimal(),
+                          suite_from_float_to_decimal(),
                           suite_from_int_to_decimal(),
                           suite_is_equal(),
                           suite_is_less(),
