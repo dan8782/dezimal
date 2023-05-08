@@ -14,10 +14,6 @@
 #define LAST_EXP_BIT 119
 #define LAST_MANTISSA_BIT 95
 
-static char *StatusName[] = {
-    "OK", "the number is too large or equal to infinity",
-    "the number is too small or equal to negative infinity", "division by 0 "};
-
 typedef enum enumDiv_status {
   OK,
   PLUS_INFINITY,
@@ -34,15 +30,6 @@ typedef struct {
   int exp;
   int sign;
 } big_decimal;
-
-typedef union {
-  float f;
-  struct {
-    unsigned int mantisa : 23;
-    unsigned int exponent : 8;
-    unsigned int sign : 1;
-  } parts;
-} float_cast;
 
 void print_dec(s21_decimal *dec);
 int get_bit(s21_decimal decimal, int index);
@@ -126,8 +113,6 @@ int sub_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
 int mod_bitwise_big(big_decimal x, big_decimal y, big_decimal *mod);
 big_decimal pow_10_decimal_big(int n);
 int div_int_bitwise_big(big_decimal x, big_decimal y, big_decimal *res);
-s21_decimal div_int_test(s21_decimal dividend, s21_decimal divisor,
-                         s21_decimal *result);
 
 int banking_rounding(big_decimal *big_dec, big_decimal last_diget);
 int get_last_bit(s21_decimal *val1);
