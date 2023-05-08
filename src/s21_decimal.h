@@ -53,7 +53,6 @@ void set_zero(s21_decimal *x);
 void set_exp(s21_decimal *decimal, int exp);
 void set_sign(s21_decimal *decl, bool sign);
 
-int is_mantissa_less(s21_decimal x, s21_decimal y, int sign);
 int s21_is_greater(s21_decimal x, s21_decimal y);
 int s21_is_greater_or_equal(s21_decimal x, s21_decimal y);
 int s21_is_less_or_equal(s21_decimal x, s21_decimal y);
