@@ -11,7 +11,8 @@ int is_max_decimal(big_decimal *big_dec) {
   int first_3_bits = big_dec->bits[2] == UINT_MAX &&
                      big_dec->bits[1] == UINT_MAX &&
                      big_dec->bits[0] == UINT_MAX;
-  if (last_3_bits && first_3_bits) res = 1;
+  if (last_3_bits && first_3_bits)
+    res = 1;
   return res;
 }
 
@@ -32,12 +33,13 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
   int err = OK;
   set_zero(s21_dec);
   int exp =
-      big_dec.exp;  // забираю степень и знак так как int_bitwise занулит их
+      big_dec.exp; // забираю степень и знак так как int_bitwise занулит их
   int sign = big_dec.sign;
   int is_s21_dec = 1;
 
   for (int i = 3; i < 6; i++) {
-    if (big_dec.bits[i]) is_s21_dec = 0;
+    if (big_dec.bits[i])
+      is_s21_dec = 0;
   }
   //  Если биг децимал не влазит в обычный децимал:
   if (!is_s21_dec) {
@@ -45,7 +47,7 @@ int big_to_dec(big_decimal big_dec, s21_decimal *s21_dec) {
     ten.bits[0] = 10;
     big_decimal last_diget = init();
     while (1) {
-      mod_bitwise_big(big_dec, ten, &last_diget);  // цифра за 96-м битом
+      mod_bitwise_big(big_dec, ten, &last_diget); // цифра за 96-м битом
       div_int_bitwise_big(big_dec, ten, &big_dec);
       exp -= 1;
       if (exp < 0) {

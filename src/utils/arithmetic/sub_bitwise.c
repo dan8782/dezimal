@@ -15,8 +15,8 @@ int sub_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   } else {
     while (!is_zero(&min)) {
       for (int i = 0; i < 3; i++) {
-        borrow.bits[i] = ~max.bits[i] & min.bits[i];  // int borrow = (~x) & y;
-        max.bits[i] ^= min.bits[i];                   // x = x ^ y;
+        borrow.bits[i] = ~max.bits[i] & min.bits[i]; // int borrow = (~x) & y;
+        max.bits[i] ^= min.bits[i];                  // x = x ^ y;
       }
       // y = borrow << 1;
       left_shift(&borrow);
@@ -46,8 +46,8 @@ int sub_bitwise_big(big_decimal x, big_decimal y, big_decimal *res) {
   } else {
     while (!is_zero_big(&min)) {
       for (int i = 0; i < 6; i++) {
-        borrow.bits[i] = ~max.bits[i] & min.bits[i];  // int borrow = (~x) & y;
-        max.bits[i] ^= min.bits[i];                   // x = x ^ y;
+        borrow.bits[i] = ~max.bits[i] & min.bits[i]; // int borrow = (~x) & y;
+        max.bits[i] ^= min.bits[i];                  // x = x ^ y;
       }
       // y = borrow << 1;
       left_shift_big(&borrow);

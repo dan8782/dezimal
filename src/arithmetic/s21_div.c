@@ -39,7 +39,7 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
 
         // printf("dig_befor_point = %d\n", dig_befor_point);
         // printf("dig_after_point = %d\n", dig_after_point);
-        if (scale_less_zero && !err) {  // если value_1 < value_2
+        if (scale_less_zero && !err) { // если value_1 < value_2
           exp = dig_after_point + scale_less_zero;
           if (exp > 28) {
             big_decimal big_res_last = init();
@@ -58,15 +58,17 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
             exp = 28;
           }
           // print_big_mantissa(&big_res);
-        } else if (!err) {  // если value_1 > value_2
-          if (dig_after_point) exp = dig_after_point;
+        } else if (!err) { // если value_1 > value_2
+          if (dig_after_point)
+            exp = dig_after_point;
         }
       }
     }
     big_res.sign = res_sign;
     big_res.exp = exp;
     err = big_to_dec(big_res, result);
-    if (err && res_sign) err = MINUS_INFINITY;
+    if (err && res_sign)
+      err = MINUS_INFINITY;
   }
   return err;
 }
@@ -85,11 +87,11 @@ int normal_div(big_decimal big_1, big_decimal big_2, big_decimal *big_res,
     big_decimal big_mod = init();
     big_decimal big_buff = init();
     copy_decimal_big(&big_mod, big_1);
-    div_int_bitwise_big(big_mod, big_2, big_res);  // целочисленный результат
+    div_int_bitwise_big(big_mod, big_2, big_res); // целочисленный результат
     mod_bitwise_big(big_1, big_2, &big_buff);
     if (big_res->bits[5] || big_res->bits[4] || big_res->bits[3]) {
       err = 1;
-    } else if (!is_zero_big(&big_buff)) {  // нецелочисленный результат
+    } else if (!is_zero_big(&big_buff)) { // нецелочисленный результат
       set_zero_big(&big_buff);
       // количество цифр целой части
       copy_decimal_big(&big_buff, *big_res);
@@ -121,7 +123,7 @@ int normal_div(big_decimal big_1, big_decimal big_2, big_decimal *big_res,
         }
       } while (!is_zero_big(&big_mod));
 
-    }  // нецелочисленный результат
+    } // нецелочисленный результат
   } else {
     err = 1;
   }

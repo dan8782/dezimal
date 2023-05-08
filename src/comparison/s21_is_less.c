@@ -1,7 +1,7 @@
 #include "../s21_decimal.h"
 
 int s21_is_less(s21_decimal x, s21_decimal y) {
-  int result = 0;  // 0 - FALSE, 1 - TRUE
+  int result = 0; // 0 - FALSE, 1 - TRUE
   int bitwise_compare = 0;
   int sign_x = get_sign(&x);
   int sign_y = get_sign(&y);

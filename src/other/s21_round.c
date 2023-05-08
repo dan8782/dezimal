@@ -22,7 +22,7 @@ int s21_round(s21_decimal dec, s21_decimal *res) {
     // s21_decimal mod = {{0, 0, 0, 0}};
     //  s21_decimal scale = {{0, 0, 0, 0}};
     s21_decimal scale =
-        pow_10_decimal(exp - 1);  // на один знак больше чем целая часть
+        pow_10_decimal(exp - 1); // на один знак больше чем целая часть
     // div_int_bitwise(dec, scale, &buff);
     big_decimal val_big = dec_to_big(dec);
     big_decimal scale_big = dec_to_big(scale);
@@ -31,11 +31,12 @@ int s21_round(s21_decimal dec, s21_decimal *res) {
     big_to_dec(big_res, &buff);
     mod_bitwise(buff, ten, &last_number);
 
-    err = s21_truncate(dec, res);  // учитывает знак, степень убирается там же
-    int less = is_bitwise_less(&last_number, &five);  // N+1 знак < 5
-    if (!less) err = add_bitwise(*res, one, res);
+    err = s21_truncate(dec, res); // учитывает знак, степень убирается там же
+    int less = is_bitwise_less(&last_number, &five); // N+1 знак < 5
+    if (!less)
+      err = add_bitwise(*res, one, res);
   } else {
-    copy_decimal(res, dec);  // учитывает знак, степень равно 0
+    copy_decimal(res, dec); // учитывает знак, степень равно 0
   }
   // print_dec(res);
 

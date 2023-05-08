@@ -21,7 +21,8 @@ int add_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
         x.bits[i] ^= y.bits[i];
       }
 
-      if (left_shift(&carry)) err = 1;
+      if (left_shift(&carry))
+        err = 1;
       for (int i = 0; i < 3; i++) {
         y.bits[i] = carry.bits[i];
       }
@@ -47,7 +48,8 @@ int add_bitwise_big(big_decimal x, big_decimal y, big_decimal *res) {
         x.bits[i] ^= y.bits[i];
       }
 
-      if (left_shift_big(&carry)) err = 1;
+      if (left_shift_big(&carry))
+        err = 1;
       for (int i = 0; i < 6; i++) {
         y.bits[i] = carry.bits[i];
       }
