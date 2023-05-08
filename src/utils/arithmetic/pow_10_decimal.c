@@ -20,7 +20,7 @@ s21_decimal mul_by_10(s21_decimal *dec) {
 
 s21_decimal pow_10_decimal(int n) {
   int i = 0;
-  s21_decimal res = {10, 0, 0, 0};
+  s21_decimal res = {{10, 0, 0, 0}};
   if (n == 0) {
     res.bits[0] = 1;
   } else if (n > 0 && n < 29) {

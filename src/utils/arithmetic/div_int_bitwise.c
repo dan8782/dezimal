@@ -14,7 +14,7 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
   } else if (less) {
     set_zero(res); // целая часть 0
   } else {
-    s21_decimal buff_y = {0, 0, 0, 0};
+    s21_decimal buff_y = {{0, 0, 0, 0}};
 
     for (int i = LAST_BIT - 1; i >= 0; i--) {
       // printf("i = %d\n", i);
@@ -30,7 +30,7 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
           !get_bit(buff_y, 95)) {   // checking if: y * 2^i <= x
         sub_bitwise(x, buff_y, &x); // subtracting y << i from x
         // print_dec(&x);
-        s21_decimal one = {1, 0, 0, 0}; // сбрасываем изменненный one
+        s21_decimal one = {{1, 0, 0, 0}}; // сбрасываем изменненный one
         for (int k = 0; k < i; k++, left_shift(&one))
           ; // 1 << i;  2^i
         if (get_bit(buff_y, 95)) {
@@ -41,7 +41,7 @@ int div_int_bitwise(s21_decimal x, s21_decimal y, s21_decimal *res) {
         }
         add_bitwise(*res, one, res); // adding 2^i to the answer
       } else if (get_bit(buff_y, 95)) {
-        s21_decimal one = {1, 0, 0, 0};
+        s21_decimal one = {{1, 0, 0, 0}};
         // left_shift(&one);
         add_bitwise(*res, one, res);
       }
