@@ -29,7 +29,4 @@ clean:
 	rm -rf run_cov
 	rm -rf run_cov.dSYM
 	rm -rf run_test
-	rm -rf report  
-
-check_style:
-	clang-format -style=Google -n *.c *.h
+	rm -rf report
