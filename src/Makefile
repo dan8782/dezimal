@@ -1,5 +1,5 @@
 FLAGS_FOR_TEST = $(shell pkg-config --libs --cflags check)
-FLAGS_STANDART =  -Wall -Wextra -Werror -std=c11 -g -fsanitize=address
+FLAGS_STANDART =  -Wall -Wextra -Werror -std=c11 #-g -fsanitize=address
 SRCS = $(shell find . -type f -name '*.c' -print)
 SRCS_LIB = $(shell find . -path ./tests -prune -o -name '*.c' -print)
 SRCS_LCOV = $(shell find . -type f -name 's21_*.gcda' -print)
