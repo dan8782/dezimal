@@ -30,8 +30,7 @@ int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   temp_res.exp = scale_exp;
   temp_res.sign = res_sign;
   // print_big_mantissa(&temp_res);
-  if (!err)
-    err = big_to_dec(temp_res, result);
+  if (!err) err = big_to_dec(temp_res, result);
   if (err && res_sign) {
     err = 2;
   }

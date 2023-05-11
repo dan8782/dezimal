@@ -15,11 +15,11 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   int minus_minus = big_1.sign && big_2.sign;
   int plus_plus = !big_1.sign && !big_2.sign;
 
-  if (minus_minus || plus_plus) { // случай - - и + +
+  if (minus_minus || plus_plus) {  // случай - - и + +
     err = add_bitwise_big(big_1, big_2, &big_res);
     big_res.sign = minus_minus ? 1 : 0;
-  } else {                                         // случай - + и + -
-    err = sub_bitwise_big(big_1, big_2, &big_res); // вычитание по модулю
+  } else {                                          // случай - + и + -
+    err = sub_bitwise_big(big_1, big_2, &big_res);  // вычитание по модулю
     if (is_zero_big(&big_res)) {
       big_res.sign = 0;
     } else {
@@ -29,11 +29,10 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
     }
   }
 
-  big_res.exp = big_1.exp; // big_1.exp == big_2.exp после нормализации
+  big_res.exp = big_1.exp;  // big_1.exp == big_2.exp после нормализации
   err = big_to_dec(big_res, result);
 
-  if (err && big_res.sign)
-    err = MINUS_INFINITY;
+  if (err && big_res.sign) err = MINUS_INFINITY;
   // printf("ERROR = %d\n", err);
   return err;
 }

@@ -145,11 +145,11 @@ Suite *suite_from_decimal_to_float(void) {
   tcase_add_test(tc, from_decimal_to_float_0);
   tcase_add_test(tc, from_decimal_to_float_1);
   tcase_add_test(tc, from_decimal_to_float_2);
-  //tcase_add_loop_test(tc, from_decimal_to_float_3, 0, 100);
-  //tcase_add_loop_test(tc, from_decimal_to_float_4, 0, 100);
+  // tcase_add_loop_test(tc, from_decimal_to_float_3, 0, 100);
+  // tcase_add_loop_test(tc, from_decimal_to_float_4, 0, 100);
   tcase_add_test(tc, s21_from_decimal_to_float_1);
-  //tcase_add_loop_test(tc, s21_from_decimal_to_float_2, 0, 100);
-  //tcase_add_loop_test(tc, s21_from_decimal_to_float_3, 0, 100);
+  // tcase_add_loop_test(tc, s21_from_decimal_to_float_2, 0, 100);
+  // tcase_add_loop_test(tc, s21_from_decimal_to_float_3, 0, 100);
   tcase_add_test(tc, s21_from_decimal_to_float_4);
   tcase_add_test(tc, s21_from_decimal_to_float_5);
   tcase_add_test(tc, s21_from_decimal_to_float_6);
